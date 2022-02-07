@@ -12,7 +12,7 @@ jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-      - uses: action/checkout@v2
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - uses: pixta-dev/repository-mirroring-action@v1      
