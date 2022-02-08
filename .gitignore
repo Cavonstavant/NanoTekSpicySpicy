@@ -1,0 +1,12 @@
+documentation/
+nts_advanced/
+nts_single/
+subject_sample/
+nanotekspice
+*.o
+*.a
+*.out
+*.gc*
+.vscode/
+.idea/
+build/
