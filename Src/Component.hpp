@@ -25,8 +25,9 @@ namespace nts
 
         protected:
         private:
+            std::string _name;
             std::map<std::size_t, IComponent&> _links;
-            std::vector<nts::Tristate> _states;
+            std::vector<Tristate> _states;
     };
 }
 

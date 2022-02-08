@@ -22,8 +22,6 @@ namespace nts {
 
         protected:
         private:
-            std::unique_ptr<nts::IComponent> create1() const;
-
             std::unique_ptr<nts::IComponent> create4001() const;
             std::unique_ptr<nts::IComponent> create4013() const;
             std::unique_ptr<nts::IComponent> create4040() const;
