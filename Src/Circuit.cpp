@@ -15,12 +15,12 @@ nts::Circuit::~Circuit()
 {
 }
 
-void nts::Circuit::addComponent(IComponent& component)
+void nts::Circuit::addComponent(std::unique_ptr<nts::IComponent> component)
 {
     _components.push_back(component);
 }
 
-void nts::Circuit::removeComponent(IComponent& component)
+void nts::Circuit::removeComponent(std::unique_ptr<nts::IComponent> component)
 {
     _components.remove(component);
 }

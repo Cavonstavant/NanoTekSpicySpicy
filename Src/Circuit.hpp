@@ -10,20 +10,21 @@
 
 #include "IComponent.hpp"
 #include <list>
+#include <memory>
 
 namespace nts {
     class Circuit : public IComponent {
         public:
             Circuit();
             ~Circuit();
-            void addComponent(IComponent&);
-            void removeComponent(IComponent&);
+            void addComponent(std::unique_ptr<nts::IComponent>);
+            void removeComponent(std::unique_ptr<nts::IComponent>);
             void simulate(std::size_t);
             Tristate compute(std::size_t);
 
         protected:
         private:
-            std::list<IComponent> _components;
+            std::list<std::unique_ptr<nts::IComponent>> _components;
 
     };
 }

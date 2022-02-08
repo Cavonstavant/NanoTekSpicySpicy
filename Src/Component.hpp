@@ -10,7 +10,7 @@
 
 #include "IComponent.hpp"
 #include <map>
- #include <vector>
+#include <vector>
 
 namespace nts
 {
