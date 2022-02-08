@@ -10,7 +10,7 @@
 
 #include "IComponent.hpp"
 #include <map>
-// #include <vector>
+ #include <vector>
 
 namespace nts
 {
@@ -26,8 +26,7 @@ namespace nts
         protected:
         private:
             std::map<std::size_t, IComponent&> _links;
-            // std::vector<IComponent> _links;
-            // std::vector<Tristate> _states;
+            std::vector<nts::Tristate> _states;
     };
 }
 
