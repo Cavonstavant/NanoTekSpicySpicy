@@ -19,6 +19,7 @@ namespace nts {
             void addComponent(IComponent&);
             void removeComponent(IComponent&);
             void simulate(std::size_t);
+            Tristate compute(std::size_t);
 
         protected:
         private:

@@ -28,3 +28,8 @@ void nts::Circuit::removeComponent(IComponent& component)
 void nts::Circuit::simulate(std::size_t tick)
 {
 }
+
+nts::Tristate nts::Circuit::compute(std::size_t pin)
+{
+    return (Tristate::UNDEFINED);
+}
