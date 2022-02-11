@@ -14,8 +14,4 @@ bootstrap_nanotekspice/
 
 cmake-build-debug/
 
-Docs/html/
-
-Docs/latex/
-
-Docs/man/
+Docs/

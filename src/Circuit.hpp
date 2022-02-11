@@ -21,7 +21,6 @@ namespace nts {
             void removeComponent(std::unique_ptr<nts::IComponent>);
             void simulate(std::size_t);
             Tristate compute(std::size_t);
-
         protected:
         private:
             std::list<std::unique_ptr<nts::IComponent>> _components;

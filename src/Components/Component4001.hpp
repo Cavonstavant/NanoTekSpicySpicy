@@ -8,7 +8,7 @@
 #ifndef COMPONENT4001_HPP_
 #define COMPONENT4001_HPP_
 
-#include "Component.hpp"
+#include "../Component.hpp"
 
 namespace nts {
     class Component4001 : public Component {
@@ -19,6 +19,6 @@ namespace nts {
         protected:
         private:
     };
-};
+}
 
 #endif /* !COMPONENT4001_HPP_ */

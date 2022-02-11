@@ -15,11 +15,6 @@ nts::Component::~Component()
 {
 }
 
-nts::Tristate nts::Component::compute(std::size_t pin)
-{
-    return (nts::UNDEFINED);
-}
-
 void nts::Component::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
 {
     _links[pin] = other;

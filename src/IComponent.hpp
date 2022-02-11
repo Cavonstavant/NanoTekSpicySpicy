@@ -8,6 +8,8 @@
 #ifndef ICOMPONENT_HPP_
 #define ICOMPONENT_HPP_
 
+#include <string>
+
 namespace nts
 {
     enum Tristate {

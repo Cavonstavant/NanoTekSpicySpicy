@@ -11,6 +11,7 @@
 #include "IComponent.hpp"
 #include <map>
 #include <vector>
+#include <string>
 
 namespace nts
 {
@@ -18,11 +19,10 @@ namespace nts
         public:
             Component();
             ~Component();
-            Tristate compute(std::size_t pi);
-            void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin);
-            void dump() const;
-            void setPin(std::size_t pin, nts::IComponent &other);
-
+            void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
+            void setPin(std::size_t pin, nts::IComponent &other) override;
+            void setName(const std::string &name);
+            std::string getName() const;
         protected:
         private:
             std::string _name;
