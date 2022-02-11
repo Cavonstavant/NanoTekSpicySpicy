@@ -17,8 +17,11 @@ namespace nts
 {
     class Component : public IComponent {
         public:
-            Component();
-            ~Component();
+            Component() = default;
+            ~Component() override = default;
+            explicit Component(const std::string& name);
+            Component(const Component &other);
+            Component &operator=(const Component &other);
             void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
             void setPin(std::size_t pin, nts::IComponent &other) override;
             void setName(const std::string &name);
