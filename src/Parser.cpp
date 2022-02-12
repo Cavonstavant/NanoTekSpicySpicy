@@ -27,9 +27,6 @@ void nts::Parser::fillCircuit(std::string file, Circuit &circuit)
 
 std::unique_ptr<nts::IComponent> nts::Parser::createComponent(const std::string& type)
 {
-    if (type == "1")
-        return create1();
-
     if (type == "4001")
         return create4001();
     if (type == "4013")
@@ -37,11 +34,6 @@ std::unique_ptr<nts::IComponent> nts::Parser::createComponent(const std::string&
     if (type == "4040")
         return create4040();
     throw std::runtime_error("Unknown component");
-}
-
-std::unique_ptr<nts::IComponent> nts::Parser::create1() const
-{
-    std::unique_ptr<nts::IComponent> component;
 }
 
 std::unique_ptr<nts::IComponent> nts::Parser::create4001() const

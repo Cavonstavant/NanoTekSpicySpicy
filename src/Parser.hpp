@@ -22,19 +22,19 @@ namespace nts {
 
         protected:
         private:
-            std::unique_ptr<nts::IComponent> create4001() const;
-            std::unique_ptr<nts::IComponent> create4008() const;
-            std::unique_ptr<nts::IComponent> create4011() const;
-            std::unique_ptr<nts::IComponent> create4013() const;
-            std::unique_ptr<nts::IComponent> create4017() const;
-            std::unique_ptr<nts::IComponent> create4030() const;
-            std::unique_ptr<nts::IComponent> create4040() const;
-            std::unique_ptr<nts::IComponent> create4069() const;
-            std::unique_ptr<nts::IComponent> create4071() const;
-            std::unique_ptr<nts::IComponent> create4081() const;
-            std::unique_ptr<nts::IComponent> create4094() const;
-            std::unique_ptr<nts::IComponent> create4514() const;
-            std::unique_ptr<nts::IComponent> create4801() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4001() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4008() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4011() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4013() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4017() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4030() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4040() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4069() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4071() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4081() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4094() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4514() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4801() const;
     };
 }
 
