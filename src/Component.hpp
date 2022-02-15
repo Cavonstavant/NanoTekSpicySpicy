@@ -12,6 +12,7 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <memory>
 
 namespace nts
 {
@@ -23,13 +24,13 @@ namespace nts
             Component(const Component &other) = delete;
             Component &operator=(const Component &other) = delete;
             void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
-            void setPin(std::size_t pin, nts::IComponent &other) override;
+            void setPin(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
             void setName(const std::string &name);
             [[nodiscard]] std::string getName() const;
         protected:
         private:
             std::string _name;
-            std::map<std::size_t, IComponent&> _links;
+            std::vector<std::pair<IComponent *, std::pair<size_t, size_t>>> _links;
             std::vector<Tristate> _states;
     };
 }
