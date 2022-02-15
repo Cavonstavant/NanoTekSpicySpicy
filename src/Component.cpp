@@ -51,3 +51,13 @@ void nts::Component::setPin(std::size_t pin, nts::IComponent &other, std::size_t
 {
     _links.push_back(std::make_pair(&other, std::make_pair(pin, otherPin)));
 }
+
+nts::Tristate nts::Component::pollState(size_t pin) const
+{
+    return (_states[pin]);
+}
+
+void nts::Component::setState(size_t pin, Tristate state)
+{
+    _states[pin] = state;
+}
