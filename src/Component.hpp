@@ -19,9 +19,9 @@ namespace nts
         public:
             Component() = delete;
             ~Component() override = default;
-            explicit Component(const std::string& name);
-            Component(const Component &other);
-            Component &operator=(const Component &other);
+            explicit Component(const std::string& name) = delete;
+            Component(const Component &other) = delete;
+            Component &operator=(const Component &other) = delete;
             void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
             void setPin(std::size_t pin, nts::IComponent &other) override;
             void setName(const std::string &name);
