@@ -35,6 +35,7 @@ std::unique_ptr<nts::IComponent> nts::Parser::createComponent(const std::string&
 //    if (type == "4040")
 //        return create4040(type);
 //    throw std::runtime_error("Unknown component");
+    return nullptr;
 }
 
 std::unique_ptr<nts::IComponent> nts::Parser::create4001(const std::string &name) const
