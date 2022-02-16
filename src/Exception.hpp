@@ -16,10 +16,12 @@
 namespace nts {
     class Exception : std::exception {
         public:
-            Exception(std::string message);
-            ~Exception();
+            Exception(std::string const &message);
+            const char *what() const noexcept;
 
         protected:
+            std::string _message;
+
         private:
     };
 }
