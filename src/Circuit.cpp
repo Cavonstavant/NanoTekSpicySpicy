@@ -7,20 +7,12 @@
 
 #include "Circuit.hpp"
 
-nts::Circuit::Circuit()
-{
-}
-
-nts::Circuit::~Circuit()
-{
-}
-
-void nts::Circuit::addComponent(std::unique_ptr<nts::IComponent> component)
+void nts::Circuit::addComponent(std::reference_wrapper<IComponent> component)
 {
     _components.push_back(component);
 }
 
-void nts::Circuit::removeComponent(std::unique_ptr<nts::IComponent> component)
+void nts::Circuit::removeComponent(std::reference_wrapper<nts::IComponent> component)
 {
     _components.remove(component);
 }
