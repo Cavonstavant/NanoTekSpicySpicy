@@ -27,7 +27,7 @@ namespace nts
             void setPin(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
             void setName(const std::string &name);
             [[nodiscard]] std::string getName() const;
-            Tristate pollState(size_t pin) const;
+            [[nodiscard]] Tristate pollState(size_t pin) const;
             void setState(size_t pin, Tristate state);
         protected:
         private:
