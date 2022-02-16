@@ -14,8 +14,6 @@
 #include <string>
 #include <memory>
 
-
-
 namespace nts
 {
     struct link_pair {
