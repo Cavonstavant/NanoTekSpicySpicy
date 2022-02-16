@@ -28,6 +28,7 @@ void nts::Parser::fillCircuit(const std::string& file, Circuit &circuit)
 std::unique_ptr<nts::IComponent> nts::Parser::createComponent(const std::string& type)
 {
     //TODO
+
 //    if (type == "4001")
 //        return create4001(type);
 //    if (type == "4013")
