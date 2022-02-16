@@ -13,6 +13,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <functional>
 
 namespace nts
 {
@@ -28,6 +29,8 @@ namespace nts
             explicit Component(const std::string& name);
             Component(const Component &other) = delete;
             Component &operator=(const Component &other) = delete;
+            inline bool operator==(const Component &other) const { return this->_name == other._name; }
+            inline bool operator!=(const Component &other) const { return !(*this == other); }
             void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
             void setPin(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
             void setName(const std::string &name) override;

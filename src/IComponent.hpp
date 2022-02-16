@@ -26,6 +26,8 @@ namespace nts
             virtual nts::Tristate compute(std::size_t pin) = 0;
             virtual void setLink(std::size_t pin, nts::IComponent& other, std::size_t otherPin) = 0;
             virtual void setPin(std::size_t pin, nts::IComponent& other, std::size_t otherPin) = 0;
+            virtual inline bool operator==(const IComponent &other) const = 0;
+            virtual inline bool operator!=(const IComponent &other) const = 0;
             virtual void dump() const = 0;
             [[nodiscard]] virtual std::string getName() const = 0;
             virtual void setName(const std::string &name) = 0;

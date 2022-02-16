@@ -14,7 +14,12 @@ void nts::Circuit::addComponent(std::reference_wrapper<IComponent> component)
 
 void nts::Circuit::removeComponent(std::reference_wrapper<nts::IComponent> component)
 {
-    _components.remove(component);
+    for (auto it = _components.begin(); it != _components.end(); ++it) {
+        if ((it->get()) == component.get()) {
+            _components.erase(it);
+            return;
+        }
+    }
 }
 
 void nts::Circuit::simulate(std::size_t tick)
