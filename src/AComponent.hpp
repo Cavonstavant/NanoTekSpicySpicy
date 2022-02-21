@@ -22,15 +22,15 @@ namespace nts
         size_t pin_other;
         IComponent* component;
     };
-    class Component : public IComponent {
+    class AComponent : public IComponent {
         public:
-            Component() = default;
-            ~Component() override = default;
-            explicit Component(const std::string& name);
-            Component(const Component &other) = delete;
-            Component &operator=(const Component &other) = delete;
-            inline bool operator==(const Component &other) const { return this->_name == other._name; }
-            inline bool operator!=(const Component &other) const { return !(*this == other); }
+            AComponent() = default;
+            ~AComponent() override = default;
+            explicit AComponent(const std::string& name);
+            AComponent(const AComponent &other) = delete;
+            AComponent &operator=(const AComponent &other) = delete;
+            inline bool operator==(const AComponent &other) const { return this->_name == other._name; }
+            inline bool operator!=(const AComponent &other) const { return !(*this == other); }
             void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
             void setPin(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
             void setName(const std::string &name) override;
