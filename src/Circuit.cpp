@@ -15,7 +15,7 @@ void nts::Circuit::addComponent(IComponent &component)
 void nts::Circuit::removeComponent(nts::IComponent &component)
 {
     for (auto it = _components.begin(); it != _components.end(); ++it) {
-        if ((it->get()) == component.get()) {
+        if ((it->get()) == component) {
             _components.erase(it);
             return;
         }
