@@ -17,8 +17,8 @@ namespace nts {
         public:
             Circuit() = default;
             ~Circuit() override = default;
-            void addComponent(std::reference_wrapper<IComponent>);
-            void removeComponent(std::reference_wrapper<nts::IComponent>);
+            void addComponent(nts::IComponent&);
+            void removeComponent(nts::IComponent&);
             void simulate(std::size_t) override;
             Tristate compute(std::size_t) override;
         protected:

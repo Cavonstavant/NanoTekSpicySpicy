@@ -7,12 +7,12 @@
 
 #include "Circuit.hpp"
 
-void nts::Circuit::addComponent(std::reference_wrapper<IComponent> component)
+void nts::Circuit::addComponent(IComponent &component)
 {
     _components.push_back(component);
 }
 
-void nts::Circuit::removeComponent(std::reference_wrapper<nts::IComponent> component)
+void nts::Circuit::removeComponent(nts::IComponent &component)
 {
     for (auto it = _components.begin(); it != _components.end(); ++it) {
         if ((it->get()) == component.get()) {
