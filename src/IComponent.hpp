@@ -12,10 +12,10 @@
 
 namespace nts
 {
-    enum Tristate {
-        UNDEFINED = (-true),
-        TRUE = true,
-        FALSE = false
+    enum class Tristate {
+        UNDEFINED,
+        TRUE,
+        FALSE
     };
 
     class IComponent

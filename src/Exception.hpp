@@ -13,6 +13,7 @@
 #include <exception>
 #include <string>
 
+
 namespace nts {
     class NtsException : std::exception {
         public:

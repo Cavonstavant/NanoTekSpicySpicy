@@ -10,42 +10,42 @@
 namespace nts {
     Tristate and_gate(Tristate a, Tristate b)
     {
-        if (a == UNDEFINED || b == UNDEFINED)
-            return UNDEFINED;
-        if (a == TRUE && b == TRUE)
-            return TRUE;
-        return FALSE;
+        if (a == nts::Tristate::UNDEFINED || b == nts::Tristate::UNDEFINED)
+            return nts::Tristate::UNDEFINED;
+        if (a == nts::Tristate::TRUE && b == nts::Tristate::TRUE)
+            return nts::Tristate::TRUE;
+        return nts::Tristate::FALSE;
     }
     Tristate or_gate(Tristate a, Tristate b)
     {
-        if (a == UNDEFINED || b == UNDEFINED)
-            return UNDEFINED;
-        if (a == TRUE || b == TRUE)
-            return TRUE;
-        return FALSE;
+        if (a == nts::Tristate::UNDEFINED || b == nts::Tristate::UNDEFINED)
+            return nts::Tristate::UNDEFINED;
+        if (a == nts::Tristate::TRUE || b == nts::Tristate::TRUE)
+            return nts::Tristate::TRUE;
+        return nts::Tristate::FALSE;
     }
     Tristate xor_gate(Tristate a, Tristate b)
     {
-        if (a == UNDEFINED || b == UNDEFINED)
-            return UNDEFINED;
-        if (a == TRUE && b == FALSE || a == FALSE && b == TRUE)
-            return TRUE;
-        return FALSE;
+        if (a == nts::Tristate::UNDEFINED || b == nts::Tristate::UNDEFINED)
+            return nts::Tristate::UNDEFINED;
+        if (a == nts::Tristate::TRUE && b == nts::Tristate::FALSE || a == nts::Tristate::FALSE && b == nts::Tristate::TRUE)
+            return nts::Tristate::TRUE;
+        return nts::Tristate::FALSE;
     }
     Tristate not_gate(Tristate a)
     {
-        if (a == UNDEFINED)
-            return UNDEFINED;
-        if (a == TRUE)
-            return FALSE;
-        return TRUE;
+        if (a == nts::Tristate::UNDEFINED)
+            return nts::Tristate::UNDEFINED;
+        if (a == nts::Tristate::TRUE)
+            return nts::Tristate::FALSE;
+        return nts::Tristate::TRUE;
     }
     Tristate nand_gate(Tristate a, Tristate b)
     {
-        if (a == UNDEFINED || b == UNDEFINED)
-            return UNDEFINED;
-        if (a == TRUE && b == TRUE)
-            return FALSE;
-        return TRUE;
+        if (a == nts::Tristate::UNDEFINED || b == nts::Tristate::UNDEFINED)
+            return nts::Tristate::UNDEFINED;
+        if (a == nts::Tristate::TRUE && b == nts::Tristate::TRUE)
+            return nts::Tristate::FALSE;
+        return nts::Tristate::TRUE;
     }
 }
