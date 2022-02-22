@@ -22,5 +22,5 @@ void nts::Parser::fillCircuit(const std::string& file, Circuit &circuit)
     std::ifstream input(file);
     if (!input.is_open())
         throw std::runtime_error("Can't open file");
-    
+
 }
