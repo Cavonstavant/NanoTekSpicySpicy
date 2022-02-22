@@ -28,5 +28,4 @@ set(SRC src/basic_gates/basic_gates.cpp
         src/Exception.hpp
         src/main.cpp)
 
-
 add_executable(nanotekspice ${SRC})

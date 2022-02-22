@@ -20,6 +20,7 @@ namespace nts {
             void addComponent(nts::IComponent&);
             void removeComponent(nts::IComponent&);
             void simulate(std::size_t) override;
+            void dump() const override;
             Tristate compute(std::size_t) override;
         protected:
         private:
