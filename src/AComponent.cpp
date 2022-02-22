@@ -81,3 +81,11 @@ void nts::AComponent::dump() const {
         std::cout << "\t linked to " << it.get().component.getName() << "from pin: " << it.get().pin_other << " to pin: " << it.get().pin_self << std::endl;
     std::cout << "}" << std::endl;
 }
+
+nts::Tristate nts::AComponent::getState(size_t pin) const {
+    for (auto &state : _states) {
+        if (std::get<size_t>(state) == pin)
+            return (std::get<Tristate>(state));
+    }
+    throw nts::Exception::UnknownPinException(std::string("pin: " + std::to_string(pin) + " not found"), pin);
+}
