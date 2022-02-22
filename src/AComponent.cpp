@@ -6,6 +6,7 @@
 */
 
 #include "AComponent.hpp"
+#include "Exception.hpp"
 #include <iostream>
 
 
@@ -27,6 +28,7 @@ void nts::AComponent::setLink(std::size_t pin, nts::IComponent &other, std::size
     LinkPair newPair = LinkPair(pin, otherPin, other);
 
     _links.emplace_back(newPair);
+    _states.emplace_back(std::make_pair(pin, nts::Tristate::UNDEFINED));
     other.setPin(otherPin, *this, pin);
 }
 
@@ -35,18 +37,44 @@ void nts::AComponent::setPin(std::size_t pin, nts::IComponent &other, std::size_
     LinkPair newPair = LinkPair(pin, otherPin, other);
 
     _links.emplace_back(newPair);
+    _states.emplace_back(std::make_pair(pin, nts::Tristate::UNDEFINED));
 }
 
+/**
+ * @brief get the state of a pin
+ * @param pin
+ * @return the state of the pin
+ * @throw nts::Exception::UnknownPinException if the pin is not found
+ */
 nts::Tristate nts::AComponent::pollState(size_t pin) const
 {
-    return (_states[pin]);
+    for (auto &state : _states) {
+        if (std::get<size_t>(state) == pin)
+            return (std::get<Tristate>(state));
+    }
+    throw nts::Exception::UnknownPinException(std::string("pin: " + std::to_string(pin) + " not found"), pin);
 }
 
-void nts::AComponent::setState(size_t pin, Tristate state)
+/**
+ * @brief set the state of a given pin to the given value
+ * @param pin
+ * @param newState
+ * @throw nts::Exception::UnknownPinException if the pin is not found
+ */
+void nts::AComponent::setState(size_t pin, Tristate newState)
 {
-    _states[pin] = state;
+    for (auto &state : _states) {
+        if (std::get<size_t>(state) == pin) {
+            state = std::make_pair(pin, newState);
+            return;
+        }
+    }
+    throw nts::Exception::UnknownPinException(std::string("pin: " + std::to_string(pin) + " not found"), pin);
 }
 
+/**
+ * @brief display infos about the component
+ */
 void nts::AComponent::dump() const {
     std::cout << _name << ": {" << std::endl;
     for (auto &it : _links)

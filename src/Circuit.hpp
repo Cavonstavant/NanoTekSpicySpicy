@@ -25,7 +25,7 @@ namespace nts {
         protected:
         private:
             std::list<std::reference_wrapper<nts::IComponent>> _components;
-
+            std::list<std::pair<std::size_t, Tristate>> _inputsBuffer;
     };
 }
 
