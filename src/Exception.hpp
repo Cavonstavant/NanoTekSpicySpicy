@@ -15,9 +15,9 @@
 
 
 namespace nts {
-    class NtsException : std::exception {
+    class NtsException : public std::exception {
         public:
-            NtsException(std::string const &message = "Not giving the context is bad");
+            NtsException(std::string const &message);
             const char *what() const noexcept;
 
         protected:
@@ -28,34 +28,78 @@ namespace nts {
 }
 
 namespace nts::Exception {
-    class YeetException : NtsException
+    class YeetException : public NtsException
     {
         public:
-            const char *what() const noexcept { return "yeet"; }
+            YeetException(std::string const &message = "yeet") : NtsException(message) {};
+        // public:
+        //     const char *what() const noexcept { return "yeet"; }
     };
-    class ParserException : NtsException {};
-    class InvalidReadException : ParserException {};
-    class InvalidSyntaxException : InvalidReadException {};
-    class RuntimeException : NtsException {};
-    class ComputeException : RuntimeException {};
-    class SimulateException : RuntimeException {};
-    class InvalidPinException : RuntimeException {};
-    class InvalidTypeException : RuntimeException {};
-    class InvalidValueException : RuntimeException {};
-    class InvalidLinkException : RuntimeException {};
-    class InvalidComponentException : RuntimeException {};
-    class InvalidCircuitException : RuntimeException {};
-    class InvalidFileException : RuntimeException {};
-    class InvalidComponentNameException : InvalidComponentException {};
-    class RickException : YeetException
-    {
+    class ParserException : public NtsException {
         public:
-            const char *what() const noexcept { return "Never gonna give you up, never gonna let you down, never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye, never gonna tell a lie and hurt you."; }
+            ParserException(std::string const &message) : NtsException(message) {};
     };
-    class AAAAAAAAAAAAAAAAAAAAAAAAException : YeetException
+    class InvalidReadException : public ParserException {
+        public:
+            InvalidReadException(std::string const &message) : ParserException(message) {};
+    };
+    class InvalidSyntaxException : public InvalidReadException {
+        public:
+            InvalidSyntaxException(std::string const &message) : InvalidReadException(message) {};
+    };
+    class RuntimeException : public NtsException {
+        public:
+            RuntimeException(std::string const &message) : NtsException(message) {};
+    };
+    class ComputeException : public RuntimeException {
+        public:
+            ComputeException(std::string const &message) : RuntimeException(message) {};
+    };
+    class SimulateException : public RuntimeException {
+        public:
+            SimulateException(std::string const &message) : RuntimeException(message) {};
+    };
+    class InvalidPinException : public RuntimeException {
+        public:
+            InvalidPinException(std::string const &message) : RuntimeException(message) {};
+    };
+    class InvalidTypeException : public RuntimeException {
+        public:
+            InvalidTypeException(std::string const &message) : RuntimeException(message) {};
+    };
+    class InvalidValueException : public RuntimeException {
+        public:
+            InvalidValueException(std::string const &message) : RuntimeException(message) {};
+    };
+    class InvalidLinkException : public RuntimeException {
+        public:
+            InvalidLinkException(std::string const &message) : RuntimeException(message) {};
+    };
+    class InvalidComponentException : public RuntimeException {
+        public:
+            InvalidComponentException(std::string const &message) : RuntimeException(message) {};
+    };
+    class InvalidCircuitException : public RuntimeException {
+        public:
+            InvalidCircuitException(std::string const &message) : RuntimeException(message) {};
+    };
+    class InvalidFileException : public RuntimeException {
+        public:
+            InvalidFileException(std::string const &message) : RuntimeException(message) {};
+    };
+    class InvalidComponentNameException : public InvalidComponentException {
+        public:
+            InvalidComponentNameException(std::string const &message) : InvalidComponentException(message) {};
+    };
+    class RickException : public YeetException
     {
         public:
-            const char *what() const noexcept { return "AAAAAAAAAAAAAAAAAAAAAAAA"; }
+            RickException() : YeetException("Never gonna give you up, never gonna let you down, never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye, never gonna tell a lie and hurt you.") {};
+    };
+    class AAAAAAAAAAAAAAAAAAAAAAAAException : public YeetException
+    {
+        public:
+            AAAAAAAAAAAAAAAAAAAAAAAAException() : YeetException("AAAAAAAAAAAAAAAAAAAAAAAA") {};
     };
 }
 
