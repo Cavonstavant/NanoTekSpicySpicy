@@ -13,26 +13,34 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <functional>
 
 namespace nts
 {
+    struct link_pair {
+        size_t pin_self;
+        size_t pin_other;
+        IComponent* component;
+    };
     class Component : public IComponent {
         public:
-            Component() = delete;
+            Component() = default;
             ~Component() override = default;
             explicit Component(const std::string& name);
             Component(const Component &other) = delete;
             Component &operator=(const Component &other) = delete;
+            inline bool operator==(const Component &other) const { return this->_name == other._name; }
+            inline bool operator!=(const Component &other) const { return !(*this == other); }
             void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
             void setPin(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
-            void setName(const std::string &name);
-            [[nodiscard]] std::string getName() const;
-            [[nodiscard]] Tristate pollState(size_t pin) const;
-            void setState(size_t pin, Tristate state);
+            void setName(const std::string &name) override;
+            [[nodiscard]] std::string getName() const override;
+            [[nodiscard]] Tristate pollState(size_t pin) const override;
+            void setState(size_t pin, Tristate state) override;
         protected:
         private:
             std::string _name;
-            std::vector<std::pair<IComponent *, std::pair<size_t, size_t>>> _links;
+            std::vector<std::reference_wrapper<link_pair>> _links;
             std::vector<Tristate> _states;
     };
 }

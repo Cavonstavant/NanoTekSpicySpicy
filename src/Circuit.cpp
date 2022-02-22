@@ -7,22 +7,19 @@
 
 #include "Circuit.hpp"
 
-nts::Circuit::Circuit()
-{
-}
-
-nts::Circuit::~Circuit()
-{
-}
-
-void nts::Circuit::addComponent(std::unique_ptr<nts::IComponent> component)
+void nts::Circuit::addComponent(IComponent &component)
 {
     _components.push_back(component);
 }
 
-void nts::Circuit::removeComponent(std::unique_ptr<nts::IComponent> component)
+void nts::Circuit::removeComponent(nts::IComponent &component)
 {
-    _components.remove(component);
+    for (auto it = _components.begin(); it != _components.end(); ++it) {
+        if ((it->get()) == component) {
+            _components.erase(it);
+            return;
+        }
+    }
 }
 
 void nts::Circuit::simulate(std::size_t tick)

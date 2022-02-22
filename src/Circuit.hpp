@@ -15,15 +15,15 @@
 namespace nts {
     class Circuit : public IComponent {
         public:
-            Circuit();
-            ~Circuit();
-            void addComponent(std::unique_ptr<nts::IComponent>);
-            void removeComponent(std::unique_ptr<nts::IComponent>);
-            void simulate(std::size_t);
-            Tristate compute(std::size_t);
+            Circuit() = default;
+            ~Circuit() override = default;
+            void addComponent(nts::IComponent&);
+            void removeComponent(nts::IComponent&);
+            void simulate(std::size_t) override;
+            Tristate compute(std::size_t) override;
         protected:
         private:
-            std::list<std::unique_ptr<nts::IComponent>> _components;
+            std::list<std::reference_wrapper<nts::IComponent>> _components;
 
     };
 }
