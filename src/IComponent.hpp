@@ -32,7 +32,7 @@ namespace nts
             [[nodiscard]] virtual std::string getName() const = 0;
             virtual void setName(const std::string &name) = 0;
             [[nodiscard]] virtual Tristate pollState(size_t pin) const = 0;
-            virtual void setState(size_t pin, Tristate state) = 0;
+            virtual void setState(size_t pin, Tristate new_state) = 0;
     };
 }
 

@@ -40,12 +40,12 @@ namespace nts
             void setName(const std::string &name) override;
             [[nodiscard]] std::string getName() const override;
             [[nodiscard]] Tristate pollState(size_t pin) const override;
-            void setState(size_t pin, Tristate state) override;
+            void setState(size_t pin, Tristate newState) override;
         protected:
         private:
             std::string _name;
             std::vector<std::reference_wrapper<LinkPair>> _links;
-            std::vector<Tristate> _states;
+            std::vector<std::pair<std::size_t, Tristate>> _states;
     };
 }
 
