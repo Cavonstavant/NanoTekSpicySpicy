@@ -31,65 +31,65 @@ namespace nts::Exception {
     class YeetException : public NtsException
     {
         public:
-            YeetException(std::string const &message = "yeet") : NtsException(message) {};
+            explicit YeetException(std::string const &message = "yeet") : NtsException(message) {};
         // public:
         //     const char *what() const noexcept { return "yeet"; }
     };
     class ParserException : public NtsException {
         public:
-            ParserException(std::string const &message) : NtsException(message) {};
+            explicit ParserException(std::string const &message) : NtsException(message) {};
     };
     class InvalidReadException : public ParserException {
         public:
-            InvalidReadException(std::string const &message) : ParserException(message) {};
+            explicit InvalidReadException(std::string const &message) : ParserException(message) {};
     };
     class InvalidSyntaxException : public InvalidReadException {
         public:
-            InvalidSyntaxException(std::string const &message) : InvalidReadException(message) {};
+            explicit InvalidSyntaxException(std::string const &message) : InvalidReadException(message) {};
     };
     class RuntimeException : public NtsException {
         public:
-            RuntimeException(std::string const &message) : NtsException(message) {};
+            explicit RuntimeException(std::string const &message) : NtsException(message) {};
     };
     class ComputeException : public RuntimeException {
         public:
-            ComputeException(std::string const &message) : RuntimeException(message) {};
+            explicit ComputeException(std::string const &message) : RuntimeException(message) {};
     };
     class SimulateException : public RuntimeException {
         public:
-            SimulateException(std::string const &message) : RuntimeException(message) {};
+            explicit SimulateException(std::string const &message) : RuntimeException(message) {};
     };
     class InvalidPinException : public RuntimeException {
         public:
-            InvalidPinException(std::string const &message) : RuntimeException(message) {};
+            explicit InvalidPinException(std::string const &message) : RuntimeException(message) {};
     };
     class InvalidTypeException : public RuntimeException {
         public:
-            InvalidTypeException(std::string const &message) : RuntimeException(message) {};
+            explicit InvalidTypeException(std::string const &message) : RuntimeException(message) {};
     };
     class InvalidValueException : public RuntimeException {
         public:
-            InvalidValueException(std::string const &message) : RuntimeException(message) {};
+            explicit InvalidValueException(std::string const &message) : RuntimeException(message) {};
     };
     class InvalidLinkException : public RuntimeException {
         public:
-            InvalidLinkException(std::string const &message) : RuntimeException(message) {};
+            explicit InvalidLinkException(std::string const &message) : RuntimeException(message) {};
     };
     class InvalidComponentException : public RuntimeException {
         public:
-            InvalidComponentException(std::string const &message) : RuntimeException(message) {};
+            explicit InvalidComponentException(std::string const &message) : RuntimeException(message) {};
     };
     class InvalidCircuitException : public RuntimeException {
         public:
-            InvalidCircuitException(std::string const &message) : RuntimeException(message) {};
+            explicit InvalidCircuitException(std::string const &message) : RuntimeException(message) {};
     };
     class InvalidFileException : public RuntimeException {
         public:
-            InvalidFileException(std::string const &message) : RuntimeException(message) {};
+            explicit InvalidFileException(std::string const &message) : RuntimeException(message) {};
     };
     class InvalidComponentNameException : public InvalidComponentException {
         public:
-            InvalidComponentNameException(std::string const &message) : InvalidComponentException(message) {};
+            explicit InvalidComponentNameException(std::string const &message) : InvalidComponentException(message) {};
     };
     class RickException : public YeetException
     {
