@@ -59,14 +59,27 @@ namespace nts::Exception {
         public:
             explicit SimulateException(std::string const &message) : RuntimeException(message) {};
     };
+    class InvalidPinException : public RuntimeException {
+        public:
+            InvalidPinException() = delete;
+            explicit InvalidPinException(std::string const &message, size_t pin) : RuntimeException(message) {};
+            /**
+             * @brief get the invalid pin number
+             * @return pin number
+             */
+            [[nodiscard]] size_t getPin() const noexcept { return _pin; }
+        private:
+            size_t _pin{};
+    };
     class UnknownPinException : public RuntimeException {
         public:
+            UnknownPinException() = delete;
             explicit UnknownPinException(std::string const &message, size_t pin) : RuntimeException(message) {};
             /**
-             * @brief Get the Pin number that caused the error
-             * @return Pin number
+             * @brief Get the missing Pin number
+             * @return pin number
              */
-            [[nodiscard]] size_t getPin() const { return _pin; }
+            [[nodiscard]] size_t getPin() const noexcept { return _pin; }
         private:
             size_t _pin{};
     };
