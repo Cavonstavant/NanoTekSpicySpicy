@@ -43,7 +43,8 @@ void nts::AComponent::setPin(std::size_t pin, nts::IComponent &other, std::size_
 /**
  * @brief get the state of a pin
  * @param pin
- * @return
+ * @return the state of the pin
+ * @throw nts::Exception::UnknownPinException if the pin is not found
  */
 nts::Tristate nts::AComponent::pollState(size_t pin) const
 {
@@ -51,13 +52,14 @@ nts::Tristate nts::AComponent::pollState(size_t pin) const
         if (std::get<size_t>(state) == pin)
             return (std::get<Tristate>(state));
     }
-    return (nts::Tristate::UNDEFINED);
+    throw nts::Exception::UnknownPinException(std::string("pin: " + std::to_string(pin) + " not found"), pin);
 }
 
 /**
  * @brief set the state of a given pin to the given value
  * @param pin
  * @param newState
+ * @throw nts::Exception::UnknownPinException if the pin is not found
  */
 void nts::AComponent::setState(size_t pin, Tristate newState)
 {
@@ -67,7 +69,7 @@ void nts::AComponent::setState(size_t pin, Tristate newState)
             return;
         }
     }
-    throw nts::NtsException(std::string("pin: " + std::to_string(pin) + " not found"));
+    throw nts::Exception::UnknownPinException(std::string("pin: " + std::to_string(pin) + " not found"), pin);
 }
 
 /**
