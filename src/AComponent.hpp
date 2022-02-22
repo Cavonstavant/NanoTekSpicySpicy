@@ -5,8 +5,8 @@
 ** Component
 */
 
-#ifndef COMPONENT_HPP_
-#define COMPONENT_HPP_
+#ifndef NANOTEKSPICE_ACOMPONENT_HPP
+#define NANOTEKSPICE_ACOMPONENT_HPP
 
 #include "IComponent.hpp"
 #include <map>
@@ -17,10 +17,13 @@
 
 namespace nts
 {
-    struct link_pair {
-        size_t pin_self;
-        size_t pin_other;
-        IComponent* component;
+    struct LinkPair {
+        LinkPair() = delete;
+        LinkPair(size_t pin_self, size_t pin_other, IComponent& component) : component(component) {};
+        ~LinkPair() = default;
+        size_t pin_self{};
+        size_t pin_other{};
+        IComponent& component;
     };
     class AComponent : public IComponent {
         public:
@@ -31,6 +34,7 @@ namespace nts
             AComponent &operator=(const AComponent &other) = delete;
             inline bool operator==(const AComponent &other) const { return this->_name == other._name; }
             inline bool operator!=(const AComponent &other) const { return !(*this == other); }
+            void dump() const override;
             void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
             void setPin(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
             void setName(const std::string &name) override;
@@ -40,9 +44,9 @@ namespace nts
         protected:
         private:
             std::string _name;
-            std::vector<std::reference_wrapper<link_pair>> _links;
+            std::vector<std::reference_wrapper<LinkPair>> _links;
             std::vector<Tristate> _states;
     };
 }
 
-#endif /* !COMPONENT_HPP_ */
+#endif /* !NANOTEKSPICE_ACOMPONENT_HPP */
