@@ -50,7 +50,7 @@ namespace nts::Exception {
     class RickException : YeetException
     {
         public:
-            const char *what() const noexcept { return "Never gonna give you up, never gonna let you down, never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye, never gonna tell a lie and hurt you."; }
+            [[nodiscard]] const char *what() const noexcept { return "Never gonna give you up, never gonna let you down, never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye, never gonna tell a lie and hurt you."; }
     };
     class AAAAAAAAAAAAAAAAAAAAAAAAException : YeetException
     {
