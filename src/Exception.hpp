@@ -5,8 +5,8 @@
 ** Exception
 */
 
-#ifndef EXCEPTION_HPP_
-#define EXCEPTION_HPP_
+#ifndef NANOTEKSPICE_EXCEPTION_HPP
+#define NANOTEKSPICE_EXCEPTION_HPP
 
 #define yeet throw nts::Exception::YeetException()
 
@@ -17,8 +17,8 @@
 namespace nts {
     class NtsException : std::exception {
         public:
-            NtsException(std::string const &message = "Not giving the context is bad");
-            const char *what() const noexcept;
+            explicit NtsException(std::string const &message = "Not giving the context is bad");
+            [[nodiscard]] const char *what() const noexcept override;
 
         protected:
             std::string _message;
@@ -31,7 +31,7 @@ namespace nts::Exception {
     class YeetException : NtsException
     {
         public:
-            const char *what() const noexcept { return "yeet"; }
+            [[nodiscard]] const char *what() const noexcept override { return "yeet"; }
     };
     class ParserException : NtsException {};
     class InvalidReadException : ParserException {};
@@ -50,13 +50,13 @@ namespace nts::Exception {
     class RickException : YeetException
     {
         public:
-            [[nodiscard]] const char *what() const noexcept { return "Never gonna give you up, never gonna let you down, never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye, never gonna tell a lie and hurt you."; }
+            [[nodiscard]] const char *what() const noexcept override { return "Never gonna give you up, never gonna let you down, never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye, never gonna tell a lie and hurt you."; }
     };
     class AAAAAAAAAAAAAAAAAAAAAAAAException : YeetException
     {
         public:
-            const char *what() const noexcept { return "AAAAAAAAAAAAAAAAAAAAAAAA"; }
+            [[nodiscard]] const char *what() const noexcept override { return "AAAAAAAAAAAAAAAAAAAAAAAA"; }
     };
 }
 
-#endif /* !EXCEPTION_HPP_ */
+#endif /* !NANOTEKSPICE_EXCEPTION_HPP */
