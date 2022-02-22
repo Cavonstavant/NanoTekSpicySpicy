@@ -5,8 +5,8 @@
 ** Exception
 */
 
-#ifndef EXCEPTION_HPP_
-#define EXCEPTION_HPP_
+#ifndef NANOTEKSPICE_EXCEPTION_HPP
+#define NANOTEKSPICE_EXCEPTION_HPP
 
 #define yeet throw nts::Exception::YeetException()
 
@@ -17,8 +17,8 @@
 namespace nts {
     class NtsException : public std::exception {
         public:
-            NtsException(std::string const &message);
-            const char *what() const noexcept;
+            explicit NtsException(std::string const &message = "Not giving the context is bad");
+            [[nodiscard]] const char *what() const noexcept override;
 
         protected:
             std::string _message;
@@ -103,4 +103,4 @@ namespace nts::Exception {
     };
 }
 
-#endif /* !EXCEPTION_HPP_ */
+#endif /* !NANOTEKSPICE_EXCEPTION_HPP */

@@ -8,10 +8,10 @@
 #ifndef COMPONENT4515_HPP_
 #define COMPONENT4515_HPP_
 
-#include "../Component.hpp"
+#include "../AComponent.hpp"
 
 namespace nts {
-    class Component4515 : public Component {
+    class Component4515 : public AComponent {
         public:
             Component4515();
             ~Component4515();

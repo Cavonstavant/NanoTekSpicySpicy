@@ -5,8 +5,8 @@
 ** IComponent
 */
 
-#ifndef ICOMPONENT_HPP_
-#define ICOMPONENT_HPP_
+#ifndef NANOTEKSPICE_ICOMPONENT_HPP
+#define NANOTEKSPICE_ICOMPONENT_HPP
 
 #include <string>
 
@@ -36,4 +36,4 @@ namespace nts
     };
 }
 
-#endif /* !ICOMPONENT_HPP_ */
+#endif /* !NANOTEKSPICE_ICOMPONENT_HPP */

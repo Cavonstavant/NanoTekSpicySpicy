@@ -8,10 +8,10 @@
 #ifndef COMPONENT4040_HPP_
 #define COMPONENT4040_HPP_
 
-#include "../Component.hpp"
+#include "../AComponent.hpp"
 
 namespace nts {
-    class Component4040 : public Component {
+    class Component4040 : public AComponent {
         public:
             Component4040();
             ~Component4040();
