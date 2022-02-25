@@ -43,7 +43,6 @@ namespace nts {
                 return (nts::norGate(this->getState(13), this->getState(12)));
             }
             ~Component4001() override = default;
-
         protected:
         private:
     };
