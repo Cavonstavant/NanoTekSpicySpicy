@@ -7,6 +7,22 @@
 
 #include "Parser.hpp"
 #include "AComponent.hpp"
+#include "IOComponent.hpp"
+#include "Exception.hpp"
+#include "Component4001.hpp"
+#include "Component4008.hpp"
+#include "Component4011.hpp"
+#include "Component4013.hpp"
+#include "Component4017.hpp"
+#include "Component4030.hpp"
+#include "Component4040.hpp"
+#include "Component4069.hpp"
+#include "Component4071.hpp"
+#include "Component4081.hpp"
+#include "Component4094.hpp"
+#include "Component4514.hpp"
+#include "Component4801.hpp"
+#include "Component2716.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -30,6 +46,105 @@ static inline void trimLine(std::string& line)
  * @param circuit
  * @throw nts::ParserError
  */
+void nts::Parser::createLink(std::string line, Circuit &mainBoard)
+{}
+
+void nts::Parser::createChipset(std::string line, Circuit &mainBoard)
+{
+    std::string name;
+
+    try {
+        name = line.substr(line.find(" ") + 1);
+    } catch (std::exception) {
+        throw nts::Exception::InvalidReadException("Invalid syntax");
+    }
+
+    if (line.rfind("input", 0)) {
+        IOComponent component(name);
+        component.setType(nts::IOType::INPUT);
+        mainBoard.addComponent(component);
+    }
+
+    else if (line.rfind("output", 0)) {
+        IOComponent component(name);
+        component.setType(nts::IOType::OUTPUT);
+        mainBoard.addComponent(component);
+    }
+
+    else if (line.rfind("4001", 0)) {
+        nts::Component4001 component(name);
+        mainBoard.addComponent(component);
+    }
+
+    else if (line.rfind("4008", 0)) {
+        nts::Component4008 component(name);
+        mainBoard.addComponent(component);
+    }
+
+    else if (line.rfind("4011", 0)) {
+        nts::Component4011 component(name);
+        mainBoard.addComponent(component);
+    }
+
+    else if (line.rfind("4013", 0)) {
+        nts::Component4013 component(name);
+        mainBoard.addComponent(component);
+    }
+
+    else if (line.rfind("4017", 0)) {
+        nts::Component4017 component(name);
+        mainBoard.addComponent(component);
+    }
+
+    else if (line.rfind("4030", 0)) {
+        nts::Component4030 component(name);
+        mainBoard.addComponent(component);
+    }
+
+    else if (line.rfind("4040", 0)) {
+        nts::Component4040 component(name);
+        mainBoard.addComponent(component);
+    }
+
+    else if (line.rfind("4069", 0)) {
+        nts::Component4069 component(name);
+        mainBoard.addComponent(component);
+    }
+
+    else if (line.rfind("4071", 0)) {
+        nts::Component4071 component(name);
+        mainBoard.addComponent(component);
+    }
+
+    else if (line.rfind("4081", 0)) {
+        nts::Component4081 component(name);
+        mainBoard.addComponent(component);
+    }
+
+    else if (line.rfind("4094", 0)) {
+        nts::Component4094 component(name);
+        mainBoard.addComponent(component);
+    }
+
+    else if (line.rfind("4514", 0)) {
+        nts::Component4514 component(name);
+        mainBoard.addComponent(component);
+    }
+
+    else if (line.rfind("4801", 0)) {
+        nts::Component4801 component(name);
+        mainBoard.addComponent(component);
+    }
+    else if (line.rfind("2716", 0)) {
+        nts::Component2716 component(name);
+        mainBoard.addComponent(component);
+    }
+
+    else {
+        throw nts::Exception::InvalidComponentNameException("Invalid component name");
+    }
+}
+
 void nts::Parser::fillCircuit(const std::string& file, Circuit &circuit)
 {
     std::ifstream input(file);
