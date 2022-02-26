@@ -9,7 +9,7 @@
 #define IOCOMPONENT_HPP_
 
 #include "../AComponent.hpp"
-#include
+#include "../Exception.hpp"
 
 namespace nts {
     enum IOType {
