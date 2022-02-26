@@ -32,8 +32,10 @@ namespace nts {
             Tristate compute(std::size_t) override;
         protected:
         private:
-            std::list<std::reference_wrapper<nts::IComponent>> _components;
+            std::list<std::reference_wrapper<nts::IComponent>> _inputs;
+            std::list<std::reference_wrapper<nts::IComponent>> _outputs;
             std::list<std::pair<std::size_t, Tristate>> _inputsBuffer;
+            std::list<std::pair<std::size_t, Tristate>> _outputsBuffer;
     };
 }
 
