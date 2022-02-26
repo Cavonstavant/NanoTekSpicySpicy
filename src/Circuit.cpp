@@ -8,6 +8,7 @@
 #include <iostream>
 #include "Exception.hpp"
 #include "Circuit.hpp"
+#include "Components/IOComponent.hpp"
 
 /**
  * @brief add a new component to the circuit
@@ -68,6 +69,33 @@ void nts::Circuit::dump() const
  */
 void nts::Circuit::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
 {
-    if (static_cast<IOComponent>(other).getType() == "IOComponent")
+    if (dynamic_cast<nts::IOComponent*>(&other) != nullptr)
         throw nts::Exception::InvalidTypeException("other must not be an IOComponent");
 }
+
+void nts::Circuit::setPin(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
+{
+    if (dynamic_cast<nts::IOComponent*>(&other) != nullptr)
+        throw nts::Exception::InvalidTypeException("other must not be an IOComponent");
+}
+
+void nts::Circuit::addInput(nts::IComponent &new_component)
+{
+
+}
+
+void nts::Circuit::addOutput(nts::IComponent &)
+{
+
+}
+
+nts::Tristate nts::Circuit::pollState(std::size_t) const
+{
+    return nts::Tristate::TRUE;
+}
+
+void nts::Circuit::setState(std::size_t, nts::Tristate)
+{
+
+}
+
