@@ -1,9 +1,8 @@
-task:
-  container:
-    image: epitech-content/epitest-docker
-  - matrix:
-    - name: Build
-      build_script: cmake . -DCMAKE_BUILD_TYPE=Release && make
-    - name: Test
-      test_script: cmake . -DCMAKE_BUILD_TYPE=Tests && make tests_run
-    only_if: $BRANCH == "main"
+build:
+  container: epitech-content/epitest-docker
+  build_script: cmake . -DCMAKE_BUILD_TYPE=Release && make
+  only_if: $BRANCH == "main"
+
+test:
+  container: epitech-content/epitest-docker
+  build_script: cmake . -DCMAKE_BUILD_TYPE=Tests && make tests_run
