@@ -28,4 +28,5 @@ set(SRC src/basic_gates/basic_gates.cpp
         src/Exception.hpp
         src/main.cpp)
 
-add_executable(nanotekspice ${SRC})
+
+add_executable(${CMAKE_PROJECT_NAME} ${SRC})
