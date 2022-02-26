@@ -19,13 +19,26 @@ namespace nts {
             ~Circuit() override = default;
             void addComponent(nts::IComponent&);
             void removeComponent(nts::IComponent&);
+            void setLink(std::size_t, nts::IComponent &, std::size_t) override;
+            void setPin(std::size_t, nts::IComponent &, std::size_t) override;
+            void addInput(std::string const &);
+            void addOutput(std::string const &);
+            inline bool operator==(const Circuit &other) const = delete;
+            inline bool operator!=(const Circuit &other) const = delete;
+            [[nodiscard]] std::string getName() const override = 0;
+            void setName(const std::string&) override = 0;
+            [[nodiscard]] nts::Tristate pollState(std::size_t) const override;
+            void setState(std::size_t, nts::Tristate) override;
             void simulate(std::size_t) override;
             void dump() const override;
             Tristate compute(std::size_t) override;
         protected:
         private:
             std::list<std::reference_wrapper<nts::IComponent>> _components;
+            std::list<std::reference_wrapper<nts::IComponent>> _inputs;
+            std::list<std::reference_wrapper<nts::IComponent>> _outputs;
             std::list<std::pair<std::size_t, Tristate>> _inputsBuffer;
+            std::list<std::pair<std::size_t, Tristate>> _outputsBuffer;
     };
 }
 

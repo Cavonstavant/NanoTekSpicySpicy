@@ -41,6 +41,7 @@ namespace nts
             [[nodiscard]] std::string getName() const override;
             [[nodiscard]] Tristate pollState(size_t pin) const override;
             void setState(size_t pin, Tristate newState) override;
+            [[nodiscard]] Tristate getState(size_t pin) const;
         protected:
             std::string _name;
             std::vector<std::reference_wrapper<LinkPair>> _links;
