@@ -1,7 +1,7 @@
 task:
   container:
     image: epitech-content/epitest-docker
-  matrix:
+  - matrix:
     - name: Build
       build_script: cmake . -DCMAKE_BUILD_TYPE=Release && make
     - name: Test
