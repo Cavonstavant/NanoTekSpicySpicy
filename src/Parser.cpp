@@ -9,6 +9,7 @@
 #include "AComponent.hpp"
 #include "IOComponent.hpp"
 #include "Exception.hpp"
+#include "Factory.hpp"
 #include "Component4001.hpp"
 #include "Component4008.hpp"
 #include "Component4011.hpp"
@@ -46,14 +47,16 @@ static inline void trimLine(std::string& line)
  * @param circuit
  * @throw nts::ParserError
  */
-void nts::Parser::createLink(std::string line, Circuit &mainBoard)
+void nts::Parser::createLink(std::string line, Circuit &mainBoard, Factory &factory)
 {}
 
-void nts::Parser::createChipset(std::string line, Circuit &mainBoard)
+void nts::Parser::createChipset(std::string line, Circuit &mainBoard, Factory &factory)
 {
+    std::string type;
     std::string name;
 
     try {
+        type = line.substr(0, line.find(" "));
         name = line.substr(line.find(" ") + 1);
     } catch (std::exception) {
         throw nts::Exception::InvalidReadException("Invalid syntax");
@@ -71,78 +74,13 @@ void nts::Parser::createChipset(std::string line, Circuit &mainBoard)
         mainBoard.addComponent(component);
     }
 
-    else if (line.rfind("4001", 0)) {
-        nts::Component4001 component(name);
-        mainBoard.addComponent(component);
-    }
-
-    else if (line.rfind("4008", 0)) {
-        nts::Component4008 component(name);
-        mainBoard.addComponent(component);
-    }
-
-    else if (line.rfind("4011", 0)) {
-        nts::Component4011 component(name);
-        mainBoard.addComponent(component);
-    }
-
-    else if (line.rfind("4013", 0)) {
-        nts::Component4013 component(name);
-        mainBoard.addComponent(component);
-    }
-
-    else if (line.rfind("4017", 0)) {
-        nts::Component4017 component(name);
-        mainBoard.addComponent(component);
-    }
-
-    else if (line.rfind("4030", 0)) {
-        nts::Component4030 component(name);
-        mainBoard.addComponent(component);
-    }
-
-    else if (line.rfind("4040", 0)) {
-        nts::Component4040 component(name);
-        mainBoard.addComponent(component);
-    }
-
-    else if (line.rfind("4069", 0)) {
-        nts::Component4069 component(name);
-        mainBoard.addComponent(component);
-    }
-
-    else if (line.rfind("4071", 0)) {
-        nts::Component4071 component(name);
-        mainBoard.addComponent(component);
-    }
-
-    else if (line.rfind("4081", 0)) {
-        nts::Component4081 component(name);
-        mainBoard.addComponent(component);
-    }
-
-    else if (line.rfind("4094", 0)) {
-        nts::Component4094 component(name);
-        mainBoard.addComponent(component);
-    }
-
-    else if (line.rfind("4514", 0)) {
-        nts::Component4514 component(name);
-        mainBoard.addComponent(component);
-    }
-
-    else if (line.rfind("4801", 0)) {
-        nts::Component4801 component(name);
-        mainBoard.addComponent(component);
-    }
-    else if (line.rfind("2716", 0)) {
-        nts::Component2716 component(name);
-        mainBoard.addComponent(component);
-    }
-
-    else {
-        throw nts::Exception::InvalidComponentNameException("Invalid component name");
-    }
+    // else {
+    //     try {
+    //         mainBoard.addComponent(std::reference_wrapper<IComponent>(factory.createComponent(type)));
+    //     } catch (std::exception) {
+    //         throw nts::Exception::InvalidComponentNameException("Invalid component name");
+    //     }
+    // }
 }
 
 void nts::Parser::fillCircuit(const std::string& file, Circuit &circuit)
@@ -154,6 +92,7 @@ void nts::Parser::fillCircuit(const std::string& file, Circuit &circuit)
         throw std::runtime_error("Can't open file");
     std::string line;
     bool isLink = false;
+    Factory factory;
 
     while (std::getline(input, line)) {
         line = trim(line);
@@ -165,9 +104,12 @@ void nts::Parser::fillCircuit(const std::string& file, Circuit &circuit)
         } else if (line.rfind(".chipsets:", 0) == 0) {
             isLink = false;
             continue;
+        } else if (isLink == false) {
+            createChipset(line, circuit, factory);
+        } else {
+            createLink(line, circuit, factory);
         }
     }
-
 }
 
 int nts::Parser::findAny(std::string str, const char *chars)
