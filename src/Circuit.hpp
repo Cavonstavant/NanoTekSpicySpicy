@@ -12,6 +12,7 @@
 #include <list>
 #include <memory>
 
+
 namespace nts {
     class Circuit : public IComponent {
         public:
@@ -21,8 +22,8 @@ namespace nts {
             void removeComponent(nts::IComponent&);
             void setLink(std::size_t, nts::IComponent &, std::size_t) override;
             void setPin(std::size_t, nts::IComponent &, std::size_t) override;
-            void addInput(std::string const &);
-            void addOutput(std::string const &);
+            void addInput(IComponent &);
+            void addOutput(IComponent &);
             inline bool operator==(const Circuit &other) const = delete;
             inline bool operator!=(const Circuit &other) const = delete;
             [[nodiscard]] std::string getName() const override = 0;
