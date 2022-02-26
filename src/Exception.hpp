@@ -5,8 +5,8 @@
 ** Exception
 */
 
-#ifndef EXCEPTION_HPP_
-#define EXCEPTION_HPP_
+#ifndef NANOTEKSPICE_EXCEPTION_HPP
+#define NANOTEKSPICE_EXCEPTION_HPP
 
 #define yeet throw nts::Exception::YeetException()
 
@@ -15,10 +15,10 @@
 
 
 namespace nts {
-    class NtsException : std::exception {
+    class NtsException : public std::exception {
         public:
-            NtsException(std::string const &message = "Not giving the context is bad");
-            const char *what() const noexcept;
+            explicit NtsException(std::string const &message = "Not giving the context is bad");
+            [[nodiscard]] const char *what() const noexcept override;
 
         protected:
             std::string _message;
@@ -28,35 +28,86 @@ namespace nts {
 }
 
 namespace nts::Exception {
-    class YeetException : NtsException
+    class YeetException : public NtsException
     {
         public:
-            const char *what() const noexcept { return "yeet"; }
+            explicit YeetException(std::string const &message = "yeet") : NtsException(message) {};
+        // public:
+        //     const char *what() const noexcept { return "yeet"; }
     };
-    class ParserException : NtsException {};
-    class InvalidReadException : ParserException {};
-    class InvalidSyntaxException : InvalidReadException {};
-    class RuntimeException : NtsException {};
-    class ComputeException : RuntimeException {};
-    class SimulateException : RuntimeException {};
-    class InvalidPinException : RuntimeException {};
-    class InvalidTypeException : RuntimeException {};
-    class InvalidValueException : RuntimeException {};
-    class InvalidLinkException : RuntimeException {};
-    class InvalidComponentException : RuntimeException {};
-    class InvalidCircuitException : RuntimeException {};
-    class InvalidFileException : RuntimeException {};
-    class InvalidComponentNameException : InvalidComponentException {};
-    class RickException : YeetException
-    {
+    class ParserException : public NtsException {
         public:
-            const char *what() const noexcept { return "Never gonna give you up, never gonna let you down, never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye, never gonna tell a lie and hurt you."; }
+            explicit ParserException(std::string const &message) : NtsException(message) {};
     };
-    class AAAAAAAAAAAAAAAAAAAAAAAAException : YeetException
+    class InvalidReadException : public ParserException {
+        public:
+            explicit InvalidReadException(std::string const &message) : ParserException(message) {};
+    };
+    class InvalidSyntaxException : public InvalidReadException {
+        public:
+            explicit InvalidSyntaxException(std::string const &message) : InvalidReadException(message) {};
+    };
+    class RuntimeException : public NtsException {
+        public:
+            explicit RuntimeException(std::string const &message) : NtsException(message) {};
+    };
+    class ComputeException : public RuntimeException {
+        public:
+            explicit ComputeException(std::string const &message) : RuntimeException(message) {};
+    };
+    class SimulateException : public RuntimeException {
+        public:
+            explicit SimulateException(std::string const &message) : RuntimeException(message) {};
+    };
+    class UnknownPinException : public RuntimeException {
+        public:
+            explicit UnknownPinException(std::string const &message, size_t pin) : RuntimeException(message) {};
+            /**
+             * @brief Get the Pin number that caused the error
+             * @return Pin number
+             */
+            [[nodiscard]] size_t getPin() const { return _pin; }
+        private:
+            size_t _pin{};
+    };
+    class InvalidTypeException : public RuntimeException {
+        public:
+            explicit InvalidTypeException(std::string const &message) : RuntimeException(message) {};
+    };
+    class InvalidValueException : public RuntimeException {
+        public:
+            explicit InvalidValueException(std::string const &message) : RuntimeException(message) {};
+    };
+    class InvalidLinkException : public RuntimeException {
+        public:
+            explicit InvalidLinkException(std::string const &message) : RuntimeException(message) {};
+    };
+    class InvalidComponentException : public RuntimeException {
+        public:
+            explicit InvalidComponentException(std::string const &message) : RuntimeException(message) {};
+    };
+    class InvalidCircuitException : public RuntimeException {
+        public:
+            explicit InvalidCircuitException(std::string const &message) : RuntimeException(message) {};
+    };
+    class InvalidFileException : public RuntimeException {
+        public:
+            explicit InvalidFileException(std::string const &message) : RuntimeException(message) {};
+    };
+    class InvalidComponentNameException : public InvalidComponentException {
+        public:
+            explicit InvalidComponentNameException(std::string const &message) : InvalidComponentException(message) {};
+    };
+    class RickException : public YeetException
     {
         public:
-            const char *what() const noexcept { return "AAAAAAAAAAAAAAAAAAAAAAAA"; }
+            RickException() : YeetException("Never gonna give you up, never gonna let you down, never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye, never gonna tell a lie and hurt you.") {};
+    };
+    class AAAAAAAAAAAAAAAAAAAAAAAAException : public YeetException
+    {
+        public:
+            AAAAAAAAAAAAAAAAAAAAAAAAException() : YeetException("AAAAAAAAAAAAAAAAAAAAAAAA") {};
     };
 }
 
-#endif /* !EXCEPTION_HPP_ */
+#endif /* !NANOTEKSPICE_EXCEPTION_HPP */

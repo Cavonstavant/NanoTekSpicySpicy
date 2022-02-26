@@ -6,7 +6,7 @@
 */
 
 #include "Parser.hpp"
-#include "Component.hpp"
+#include "AComponent.hpp"
 #include <fstream>
 
 nts::Parser::Parser()

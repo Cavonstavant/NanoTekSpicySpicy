@@ -5,8 +5,8 @@
 ** IComponent
 */
 
-#ifndef ICOMPONENT_HPP_
-#define ICOMPONENT_HPP_
+#ifndef NANOTEKSPICE_ICOMPONENT_HPP
+#define NANOTEKSPICE_ICOMPONENT_HPP
 
 #include <string>
 
@@ -32,8 +32,8 @@ namespace nts
             [[nodiscard]] virtual std::string getName() const = 0;
             virtual void setName(const std::string &name) = 0;
             [[nodiscard]] virtual Tristate pollState(size_t pin) const = 0;
-            virtual void setState(size_t pin, Tristate state) = 0;
+            virtual void setState(size_t pin, Tristate newState) = 0;
     };
 }
 
-#endif /* !ICOMPONENT_HPP_ */
+#endif /* !NANOTEKSPICE_ICOMPONENT_HPP */
