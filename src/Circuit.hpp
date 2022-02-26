@@ -18,8 +18,8 @@ namespace nts {
         public:
             Circuit() = default;
             ~Circuit() override = default;
-            void addComponent(nts::IComponent&);
-            void removeComponent(nts::IComponent&);
+            void addComponent(std::unique_ptr<nts::IComponent>);
+            void removeComponent(std::unique_ptr<nts::IComponent>);
             void setLink(std::size_t, nts::IComponent &, std::size_t) override;
             void setPin(std::size_t, nts::IComponent &, std::size_t) override;
             void addInput(IComponent &);
@@ -35,9 +35,9 @@ namespace nts {
             Tristate compute(std::size_t) override;
         protected:
         private:
-            std::list<std::reference_wrapper<nts::IComponent>> _components;
-            std::list<std::reference_wrapper<nts::IComponent>> _inputs;
-            std::list<std::reference_wrapper<nts::IComponent>> _outputs;
+            std::list<std::reference_wrapper<std::unique_ptr<IComponent>>> _components;
+            std::list<std::reference_wrapper<std::unique_ptr<IComponent>>> _inputs;
+            std::list<std::reference_wrapper<std::unique_ptr<IComponent>>> _outputs;
             std::list<std::pair<std::size_t, Tristate>> _inputsBuffer;
             std::list<std::pair<std::size_t, Tristate>> _outputsBuffer;
     };

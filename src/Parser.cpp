@@ -49,24 +49,20 @@ void nts::Parser::createChipset(std::string line, Circuit &mainBoard, Factory &f
     }
 
     if (line.rfind("input", 0)) {
-        IOComponent component(name);
-        component.setType(nts::IOType::INPUT);
-        mainBoard.addComponent(component);
+        // mainBoard.addComponent(component);
     }
 
     else if (line.rfind("output", 0)) {
-        IOComponent component(name);
-        component.setType(nts::IOType::OUTPUT);
-        mainBoard.addComponent(component);
+        // mainBoard.addComponent(component);
     }
 
-    // else {
-    //     try {
-    //         mainBoard.addComponent(std::reference_wrapper<IComponent>(factory.createComponent(type)));
-    //     } catch (std::exception) {
-    //         throw nts::Exception::InvalidComponentNameException("Invalid component name");
-    //     }
-    // }
+    else {
+        try {
+            mainBoard.addComponent(factory.createComponent(type));
+        } catch (std::exception) {
+            throw nts::Exception::InvalidComponentNameException("Invalid component name");
+        }
+    }
 }
 
 void nts::Parser::fillCircuit(const std::string& file, Circuit &circuit)
