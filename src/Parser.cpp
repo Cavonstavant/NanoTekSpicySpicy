@@ -7,7 +7,7 @@
 
 #include "Parser.hpp"
 #include "AComponent.hpp"
-#include "IOComponent.hpp"
+#include "Components/IOComponent.hpp"
 #include "Exception.hpp"
 #include "Factory.hpp"
 #include <fstream>
@@ -68,8 +68,6 @@ void nts::Parser::createChipset(std::string line, Circuit &mainBoard, Factory &f
 void nts::Parser::fillCircuit(const std::string& file, Circuit &circuit)
 {
     std::ifstream input(file);
-    std::string line;
-
     if (!input.is_open())
         throw std::runtime_error("Can't open file");
     std::string line;

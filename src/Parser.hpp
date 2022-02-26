@@ -12,6 +12,7 @@
 #include <memory>
 #include <vector>
 #include "Circuit.hpp"
+#include "Factory.hpp"
 
 namespace nts {
     class Parser {

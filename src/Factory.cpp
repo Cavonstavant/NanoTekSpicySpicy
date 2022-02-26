@@ -43,15 +43,13 @@ std::unique_ptr<nts::IComponent> nts::Factory::createComponent(const std::string
 
 std::unique_ptr<nts::IComponent> nts::Factory::createInput() const
 {
-    IOComponent component;
-    component.setType(nts::IOType::INPUT);
+    IOComponent component(INPUT);
     return std::make_unique<IOComponent>(component);
 }
 
 std::unique_ptr<nts::IComponent> nts::Factory::createOutput() const
 {
-    IOComponent component;
-    component.setType(nts::IOType::OUTPUT);
+    IOComponent component(OUTPUT);
     return std::make_unique<IOComponent>(component);
 }
 
