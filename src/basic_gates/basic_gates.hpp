@@ -10,7 +10,6 @@
 
 #include "../IComponent.hpp"
 
-
 namespace nts {
 Tristate andGate(Tristate a, Tristate b);
 Tristate orGate(Tristate a, Tristate b);
@@ -18,7 +17,6 @@ Tristate xorGate(Tristate a, Tristate b);
 Tristate notGate(Tristate a);
 Tristate nandGate(Tristate a, Tristate b);
 Tristate norGate(Tristate a, Tristate b);
-}
+} // namespace nts
 
-
-#endif //NANOTEKSPICE_BASIC_GATES_HPP
+#endif // NANOTEKSPICE_BASIC_GATES_HPP
