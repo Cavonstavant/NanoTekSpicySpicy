@@ -45,6 +45,7 @@ namespace nts
         protected:
             std::vector<std::reference_wrapper<LinkPair>> _links;
             std::vector<std::pair<std::size_t, Tristate>> _states;
+
             std::string _name;
         private:
     };
