@@ -6,14 +6,18 @@
 */
 
 #include "Exception.hpp"
+#include "Parser.hpp"
+#include "Circuit.hpp"
 #include <iostream>
 
-int main(void)
+int main()
 {
     try {
-        yeet;
-    } catch (nts::Exception::YeetException ex) {
-        std::cout << "YeetException" << " " << ex.what() << std::endl;
+        nts::Parser parser;
+        nts::Circuit circuit;
+        parser.fillCircuit()
+    } catch (nts::Exception::YeetException& ex) {
+        std::cout << ex.what() << std::endl;
     }
     return 0;
 }
