@@ -10,20 +10,6 @@
 #include "IOComponent.hpp"
 #include "Exception.hpp"
 #include "Factory.hpp"
-#include "Component4001.hpp"
-#include "Component4008.hpp"
-#include "Component4011.hpp"
-#include "Component4013.hpp"
-#include "Component4017.hpp"
-#include "Component4030.hpp"
-#include "Component4040.hpp"
-#include "Component4069.hpp"
-#include "Component4071.hpp"
-#include "Component4081.hpp"
-#include "Component4094.hpp"
-#include "Component4514.hpp"
-#include "Component4801.hpp"
-#include "Component2716.hpp"
 #include <fstream>
 #include <sstream>
 
