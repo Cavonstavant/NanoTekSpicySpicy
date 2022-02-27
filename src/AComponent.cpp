@@ -10,8 +10,7 @@
 #include <iostream>
 
 
-nts::AComponent::AComponent(const std::string& name)
-{
+nts::AComponent::AComponent(const std::string &name) {
     this->_name = name;
 }
 
@@ -24,7 +23,7 @@ std::string nts::AComponent::getName() const {
 }
 
 bool nts::AComponent::operator==(const nts::IComponent &other) const {
-    auto &other_component = dynamic_cast<AComponent &>(const_cast<nts::IComponent&>(other));
+    auto &other_component = dynamic_cast<AComponent &>(const_cast<nts::IComponent &>(other));
     return (this->_name == other_component.getName());
 }
 
@@ -34,8 +33,7 @@ bool nts::AComponent::operator==(const nts::IComponent &other) const {
  * @param other
  * @param otherPin
  */
-void nts::AComponent::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
+void nts::AComponent::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) {
     LinkPair newPair = LinkPair(pin, otherPin, other);
 
     _links.emplace_back(newPair);
@@ -43,8 +41,7 @@ void nts::AComponent::setLink(std::size_t pin, nts::IComponent &other, std::size
     other.setPin(otherPin, *this, pin);
 }
 
-void nts::AComponent::setPin(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
+void nts::AComponent::setPin(std::size_t pin, nts::IComponent &other, std::size_t otherPin) {
     LinkPair newPair = LinkPair(pin, otherPin, other);
 
     _links.emplace_back(newPair);
@@ -57,9 +54,8 @@ void nts::AComponent::setPin(std::size_t pin, nts::IComponent &other, std::size_
  * @return the state of the pin
  * @throw nts::Exception::UnknownPinException if the pin is not found
  */
-nts::Tristate nts::AComponent::pollState(size_t pin) const
-{
-    for (auto &state : _states) {
+nts::Tristate nts::AComponent::pollState(size_t pin) const {
+    for (auto &state: _states) {
         if (std::get<size_t>(state) == pin)
             return (std::get<Tristate>(state));
     }
@@ -72,9 +68,8 @@ nts::Tristate nts::AComponent::pollState(size_t pin) const
  * @param newState
  * @throw nts::Exception::UnknownPinException if the pin is not found
  */
-void nts::AComponent::setState(size_t pin, Tristate newState)
-{
-    for (auto &state : _states) {
+void nts::AComponent::setState(size_t pin, Tristate newState) {
+    for (auto &state: _states) {
         if (std::get<size_t>(state) == pin) {
             state = std::make_pair(pin, newState);
             return;
@@ -88,13 +83,13 @@ void nts::AComponent::setState(size_t pin, Tristate newState)
  */
 void nts::AComponent::dump() const {
     std::cout << _name << ": {" << std::endl;
-    for (auto &it : _links)
+    for (auto &it: _links)
         std::cout << "\t linked to " << it.get().component.getName() << "from pin: " << it.get().pin_other << " to pin: " << it.get().pin_self << std::endl;
     std::cout << "}" << std::endl;
 }
 
 nts::Tristate nts::AComponent::getState(size_t pin) const {
-    for (auto &state : _states) {
+    for (auto &state: _states) {
         if (std::get<size_t>(state) == pin)
             return (std::get<Tristate>(state));
     }
@@ -106,8 +101,7 @@ nts::Tristate nts::AComponent::getState(size_t pin) const {
  * @param tick
  * @throw nts::Exception::InvalidComponentException
  */
-void nts::AComponent::simulate(std::size_t tick)
-{
+void nts::AComponent::simulate(std::size_t tick) {
     throw nts::Exception::InvalidComponentException("simulate is not implemented");
 }
 

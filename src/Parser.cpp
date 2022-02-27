@@ -10,18 +10,20 @@
 #include <fstream>
 #include <sstream>
 
-nts::Parser::Parser()
-{
+nts::Parser::Parser() {
 }
 
-nts::Parser::~Parser()
-{
+nts::Parser::~Parser() {
 }
 
-static inline void trimLine(std::string& line)
-{
-    line.erase(line.begin(), std::find_if(line.begin(), line.end(), [](unsigned char c) { return !std::isspace(c); }));
-    line.erase(std::find_if(line.rbegin(), line.rend(), [](unsigned char c) { return !std::isspace(c) || c == '#'; }).base(), line.end());
+static inline void trimLine(std::string &line) {
+    line.erase(line.begin(), std::find_if(line.begin(), line.end(), [](unsigned char c) {
+                   return !std::isspace(c);
+               }));
+    line.erase(std::find_if(line.rbegin(), line.rend(), [](unsigned char c) {
+                   return !std::isspace(c) || c == '#';
+               }).base(),
+               line.end());
 }
 
 /**
@@ -30,8 +32,7 @@ static inline void trimLine(std::string& line)
  * @param circuit
  * @throw nts::ParserError
  */
-void nts::Parser::fillCircuit(const std::string& file, Circuit &circuit)
-{
+void nts::Parser::fillCircuit(const std::string &file, Circuit &circuit) {
     std::ifstream input(file);
     std::string line;
 
