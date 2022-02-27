@@ -42,6 +42,6 @@ ignore_labels:
 restylers_version: stable
 
 restylers:
-  - clang-format:
-    arguments: ["style=\"{IndentWidth: 4, TabWidth: 4}\""]
+  - name: clang-format
+    arguments: ["style="{IndentWidth: 4, TabWidth: 4}""]
   - "*"
