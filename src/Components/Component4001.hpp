@@ -20,11 +20,11 @@ namespace nts {
         Component4001(const Component4001 &other) = delete;
         Component4001 &operator=(const Component4001 &other) = delete;
         /**
-     * @brief Compute the state of the pin
-     * @param pin
-     * @return the state of the pin
-     * @throw nts::Exception::InvalidPinException if the pin is not valid
-     */
+    * @brief Compute the state of the pin
+    * @param pin
+    * @return the state of the pin
+    * @throw nts::Exception::InvalidPinException if the pin is not valid
+    */
         nts::Tristate compute(std::size_t pin) final {
             if (pin == 7 || pin == 14)
                 throw nts::Exception::InvalidPinException("Reserved pin", pin);

@@ -63,9 +63,9 @@ namespace nts::Exception {
         InvalidPinException() = delete;
         explicit InvalidPinException(std::string const &message, size_t pin) : RuntimeException(message){};
         /**
-     * @brief get the invalid pin number
-     * @return pin number
-     */
+    * @brief get the invalid pin number
+    * @return pin number
+    */
         [[nodiscard]] size_t getPin() const noexcept {
             return _pin;
         }
@@ -78,9 +78,9 @@ namespace nts::Exception {
         UnknownPinException() = delete;
         explicit UnknownPinException(std::string const &message, size_t pin) : RuntimeException(message){};
         /**
-     * @brief Get the missing Pin number
-     * @return pin number
-     */
+    * @brief Get the missing Pin number
+    * @return pin number
+    */
         [[nodiscard]] size_t getPin() const noexcept {
             return _pin;
         }
