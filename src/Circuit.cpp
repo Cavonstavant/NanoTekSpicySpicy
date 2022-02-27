@@ -73,12 +73,27 @@ void nts::Circuit::setLink(std::size_t pin, nts::IComponent &other, std::size_t 
         throw nts::Exception::InvalidTypeException("other must not be an IOComponent");
 }
 
+/**
+ * @brief will set a link between the circuit at and a component
+ * @param pin a pin of the circuit
+ * @param other the component to connect to
+ * @param otherPin the pin of the component
+ * @warning pin and otherPin must be valid
+ * @warning other must not be an IOComponent, use addInput or addOutput instead
+ * @throw nts::Exception::InvalidPinException if pin or otherPin are invalid
+ * @throw nts::Exception::InvalidTypeException if the component is not of a valid type
+ */
 void nts::Circuit::setPin(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
 {
     if (dynamic_cast<nts::IOComponent*>(&other) != nullptr)
         throw nts::Exception::InvalidTypeException("other must not be an IOComponent");
 }
 
+/**
+ * @brief will set a link between the circuit at and an IOComponent
+ * @param new_component
+ * @throw nts::Exception::I
+ */
 void nts::Circuit::addInput(nts::IComponent &new_component)
 {
 
