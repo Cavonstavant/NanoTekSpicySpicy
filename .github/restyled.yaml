@@ -42,4 +42,4 @@ ignore_labels:
 restylers_version: stable
 
 restylers:
-  - "*"
+  - clang-format
