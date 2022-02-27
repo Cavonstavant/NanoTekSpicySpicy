@@ -17,6 +17,7 @@ set(SRC src/basic_gates/basic_gates.cpp
         src/Components/Component4094.hpp
         src/Components/Component4514.hpp
         src/Components/Component4801.hpp
+        src/Components/IOComponent.hpp
         src/IComponent.hpp
         src/AComponent.cpp
         src/AComponent.hpp
@@ -28,4 +29,5 @@ set(SRC src/basic_gates/basic_gates.cpp
         src/Exception.hpp
         src/main.cpp)
 
-add_executable(nanotekspice ${SRC})
+
+add_executable(${CMAKE_PROJECT_NAME} ${SRC})
