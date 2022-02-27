@@ -23,6 +23,17 @@ std::string nts::AComponent::getName() const {
     return (this->_name);
 }
 
+bool nts::AComponent::operator==(const nts::IComponent &other) const {
+    auto &other_component = dynamic_cast<AComponent &>(const_cast<nts::IComponent&>(other));
+    return (this->_name == other_component.getName());
+}
+
+/**
+ * @brief
+ * @param pin
+ * @param other
+ * @param otherPin
+ */
 void nts::AComponent::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
 {
     LinkPair newPair = LinkPair(pin, otherPin, other);
@@ -80,4 +91,32 @@ void nts::AComponent::dump() const {
     for (auto &it : _links)
         std::cout << "\t linked to " << it.get().component.getName() << "from pin: " << it.get().pin_other << " to pin: " << it.get().pin_self << std::endl;
     std::cout << "}" << std::endl;
+}
+
+nts::Tristate nts::AComponent::getState(size_t pin) const {
+    for (auto &state : _states) {
+        if (std::get<size_t>(state) == pin)
+            return (std::get<Tristate>(state));
+    }
+    throw nts::Exception::UnknownPinException(std::string("pin: " + std::to_string(pin) + " not found"), pin);
+}
+
+/**
+ * @brief Can't simulate an abstract component (should be implemented in the child class)
+ * @param tick
+ * @throw nts::Exception::InvalidComponentException
+ */
+void nts::AComponent::simulate(std::size_t tick)
+{
+    throw nts::Exception::InvalidComponentException("simulate is not implemented");
+}
+
+/**
+ * @brief Can't compute an abstract component (should be implemented in the child class)
+ * @param pin
+ * @return the state of the pin
+ * @throw nts::Exception::InvalidComponentException
+ */
+nts::Tristate nts::AComponent::compute(std::size_t pin) {
+    throw nts::Exception::InvalidComponentException("compute is not implemented");
 }

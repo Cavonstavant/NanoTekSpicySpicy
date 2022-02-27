@@ -23,7 +23,7 @@ namespace nts {
              * @brief Compute the state of the pin
              * @param pin
              * @return the state of the pin
-             * @throw Exception if the pin is not valid
+             * @throw nts::Exception::InvalidPinException if the pin is not valid
              */
             nts::Tristate compute(std::size_t pin) final {
                 if (pin == 7 || pin == 14)
@@ -43,7 +43,6 @@ namespace nts {
                 return (nts::norGate(this->getState(13), this->getState(12)));
             }
             ~Component4001() override = default;
-
         protected:
         private:
     };

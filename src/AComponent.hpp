@@ -32,8 +32,10 @@ namespace nts
             explicit AComponent(const std::string& name);
             AComponent(const AComponent &other) = delete;
             AComponent &operator=(const AComponent &other) = delete;
-            inline bool operator==(const AComponent &other) const { return this->_name == other._name; }
-            inline bool operator!=(const AComponent &other) const { return !(*this == other); }
+            void simulate(std::size_t tick) override;
+            nts::Tristate compute(std::size_t pin) override;
+            bool operator==(const IComponent &other) const override;
+            inline bool operator!=(const IComponent &other) const override  { return !(*this == other); }
             void dump() const override;
             void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
             void setPin(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
@@ -41,6 +43,7 @@ namespace nts
             [[nodiscard]] std::string getName() const override;
             [[nodiscard]] Tristate pollState(size_t pin) const override;
             void setState(size_t pin, Tristate newState) override;
+            [[nodiscard]] Tristate getState(size_t pin) const;
         protected:
             std::string _name;
             std::vector<std::reference_wrapper<LinkPair>> _links;
