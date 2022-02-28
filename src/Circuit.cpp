@@ -83,19 +83,36 @@ void nts::Circuit::setPin(std::size_t pin, nts::IComponent &other, std::size_t o
 }
 
 /**
- * @brief will set a link between the circuit at and an IOComponent
- * @param new_component
- * @throw nts::Exception::I
+ * @brief will add an input to the circuit
+ * @param new_IO_component
+ * @throw nts::Exception::InvalidTypeException if the component is not of a valid type
  */
-void nts::Circuit::addInput(nts::IComponent &new_component) {
+void nts::Circuit::addInput(nts::IComponent &new_IO_component)
+{
+    if (dynamic_cast<nts::IOComponent*>(&new_IO_component) == nullptr)
+        throw nts::Exception::InvalidTypeException("new_IO_component must be an IOComponent");
+    _inputs.emplace_back(new_IO_component);
 }
 
-void nts::Circuit::addOutput(nts::IComponent &) {
+/**
+ * @brief will add an output to the circuit
+ * @param new_IO_component
+ * @throw nts::Exception::InvalidTypeException if the component is not of a valid type
+ */
+void nts::Circuit::addOutput(nts::IComponent &new_IO_component)
+{
+    if (dynamic_cast<nts::IOComponent*>(&new_IO_component) == nullptr)
+        throw nts::Exception::InvalidTypeException("new_IO_component must be an IOComponent");
+    _outputs.emplace_back(new_IO_component);
 }
 
-nts::Tristate nts::Circuit::pollState(std::size_t) const {
+nts::Tristate nts::Circuit::pollState(std::size_t pin) const
+{
     return nts::Tristate::TRUE;
 }
 
-void nts::Circuit::setState(std::size_t, nts::Tristate) {
+
+void nts::Circuit::setState(std::size_t pin, nts::Tristate new_state)
+{
+    _inputs
 }
