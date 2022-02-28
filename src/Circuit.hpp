@@ -41,6 +41,6 @@ namespace nts {
             std::list<std::pair<std::size_t, Tristate>> _inputsBuffer;
             std::list<std::pair<std::size_t, Tristate>> _outputsBuffer;
     };
-}
+}// namespace nts
 
 #endif /* !CIRCUIT_HPP_ */
