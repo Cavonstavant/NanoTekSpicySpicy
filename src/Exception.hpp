@@ -124,6 +124,10 @@ namespace nts::Exception {
         public:
         AAAAAAAAAAAAAAAAAAAAAAAAException() : YeetException("AAAAAAAAAAAAAAAAAAAAAAAA"){};
     };
+    class VeryStupidUserError : public InvalidSyntaxException {
+        public:
+        VeryStupidUserError(std::string const &message = "please stop") : InvalidSyntaxException(message){};
+    };
 }// namespace nts::Exception
 
 #endif /* !NANOTEKSPICE_EXCEPTION_HPP */
