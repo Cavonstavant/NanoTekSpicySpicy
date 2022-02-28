@@ -24,8 +24,9 @@ namespace nts {
             void setPin(std::size_t, nts::IComponent &, std::size_t) override;
             void addInput(IComponent &);
             void addOutput(IComponent &);
-            inline bool operator==(const Circuit &other) const = delete;
-            inline bool operator!=(const Circuit &other) const = delete;
+            inline bool operator!=(const IComponent &other) const override {
+                return !(*this == other);
+            }
             [[nodiscard]] std::string getName() const override = 0;
             void setName(const std::string&) override = 0;
             [[nodiscard]] nts::Tristate pollState(std::size_t) const override;
