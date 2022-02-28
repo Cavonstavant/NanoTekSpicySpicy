@@ -29,8 +29,8 @@ namespace nts {
         AComponent() = default;
         ~AComponent() override = default;
         explicit AComponent(const std::string &name);
-        AComponent(const AComponent &other) = delete;
-        AComponent &operator=(const AComponent &other) = delete;
+        AComponent(const AComponent &other) = default;
+        AComponent &operator=(const AComponent &other) = default;
         void simulate(std::size_t tick) override;
         nts::Tristate compute(std::size_t pin) override;
         bool operator==(const IComponent &other) const override;

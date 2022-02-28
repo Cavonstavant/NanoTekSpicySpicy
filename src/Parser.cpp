@@ -36,7 +36,28 @@ static inline void trimLine(std::string &line) {
  * @throw nts::ParserError
  */
 void nts::Parser::createLink(std::string line, Circuit &mainBoard, Factory &factory)
-{}
+{
+    std::string component1;
+    std::string component2;
+    std::string pin1;
+    std::string pin2;
+    std::string newLine = line;
+
+    try {
+        component1 = newLine.substr(0, newLine.find(":"));
+        newLine = newLine.substr(newLine.find(":") + 1);
+        pin1 = newLine.substr(0, newLine.find(" "));
+        newLine = newLine.substr(newLine.find(" ") + 1);
+        component2 = newLine.substr(0, newLine.find(":"));
+        newLine = newLine.substr(newLine.find(":") + 1);
+        pin2 = newLine;
+    } catch (std::exception &e) {
+        throw nts::Exception::InvalidSyntaxException("Invalid syntax");
+    }
+    if (component1 == component2 && pin1 == pin2)
+        throw nts::Exception::VeryStupidUserError("You can't link a component's pin to itself");
+    // mainBoard[component1]->setLink(pin1, mainBoard[component2], pin2);
+}
 
 void nts::Parser::createChipset(std::string line, Circuit &mainBoard, Factory &factory)
 {
@@ -49,21 +70,10 @@ void nts::Parser::createChipset(std::string line, Circuit &mainBoard, Factory &f
     } catch (std::exception) {
         throw nts::Exception::InvalidReadException("Invalid syntax");
     }
-
-    if (line.rfind("input", 0)) {
-        // mainBoard.addComponent(component);
-    }
-
-    else if (line.rfind("output", 0)) {
-        // mainBoard.addComponent(component);
-    }
-
-    else {
-        try {
-            mainBoard.addComponent(factory.createComponent(type));
-        } catch (std::exception) {
-            throw nts::Exception::InvalidComponentNameException("Invalid component name");
-        }
+    try {
+        mainBoard.addComponent(factory.createComponent(type));
+    } catch (std::exception) {
+        throw nts::Exception::InvalidComponentNameException("Invalid component name");
     }
 }
 
