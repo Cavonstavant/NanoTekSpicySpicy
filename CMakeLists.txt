@@ -17,6 +17,7 @@ set(SRC src/basic_gates/basic_gates.cpp
         src/Components/Component4094.hpp
         src/Components/Component4514.hpp
         src/Components/Component4801.hpp
+        src/Components/IOComponent.hpp
         src/IComponent.hpp
         src/AComponent.cpp
         src/AComponent.hpp
@@ -26,6 +27,8 @@ set(SRC src/basic_gates/basic_gates.cpp
         src/Parser.hpp
         src/Exception.cpp
         src/Exception.hpp
+        src/Factory.hpp
+        src/Factory.cpp
         src/main.cpp)
 
 

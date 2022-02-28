@@ -13,9 +13,10 @@
 int main()
 {
     try {
-        nts::Parser parser;
-        nts::Circuit circuit;
-        parser.fillCircuit()
+        yeet;
+        // nts::Parser parser;
+        // nts::Circuit circuit;
+        // parser.fillCircuit()
     } catch (nts::Exception::YeetException& ex) {
         std::cout << ex.what() << std::endl;
     }
