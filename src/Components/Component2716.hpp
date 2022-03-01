@@ -11,14 +11,14 @@
 #include "../AComponent.hpp"
 
 namespace nts {
-    class Component2716 : public AComponent {
-        public:
-            Component2716();
-            ~Component2716();
+class Component2716 : public AComponent {
+public:
+    Component2716();
+    ~Component2716();
 
-        protected:
-        private:
-    };
+protected:
+private:
+};
 }
 
 #endif /* !COMPONENT2716_HPP_ */
