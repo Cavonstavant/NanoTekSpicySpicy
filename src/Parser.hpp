@@ -16,18 +16,18 @@
 
 namespace nts {
     class Parser {
-        public:
+    public:
         Parser();
         ~Parser();
         void fillCircuit(const std::string &, Circuit &);
 
-        private:
+    private:
         std::vector<std::unique_ptr<nts::IComponent>> _buffer;
         std::string trim(const std::string &str);
         std::string trimMiddle(std::string str);
         int findAny(std::string str, const char *chars);
-        void createLink(std::string line, Circuit &mainBoard, Factory &factory);
-        void createChipset(std::string line, Circuit &mainBoard, Factory &factory);
+        void createLink(std::string line, Factory &factory);
+        void createChipset(std::string line, Factory &factory);
         // Circuit getMainBoard() const;
     };
 }// namespace nts
