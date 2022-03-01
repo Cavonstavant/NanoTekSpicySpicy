@@ -19,6 +19,10 @@ nts::Parser::Parser() {
 nts::Parser::~Parser() {
 }
 
+// nts::Circuit nts::Parser::getMainBoard() const {
+//     return _mainBoard;
+// }
+
 static inline void trimLine(std::string &line) {
     line.erase(line.begin(), std::find_if(line.begin(), line.end(), [](unsigned char c) {
                    return !std::isspace(c);

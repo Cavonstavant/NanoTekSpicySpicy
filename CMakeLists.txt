@@ -29,6 +29,8 @@ set(SRC src/basic_gates/basic_gates.cpp
         src/Exception.hpp
         src/Factory.hpp
         src/Factory.cpp
+        src/Simulation.hpp
+        src/Simulation.cpp
         src/main.cpp)
 
 

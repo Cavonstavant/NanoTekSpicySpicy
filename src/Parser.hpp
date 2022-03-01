@@ -27,6 +27,7 @@ namespace nts {
             int findAny(std::string str, const char *chars);
             void createLink(std::string line, Circuit &mainBoard, Factory &factory);
             void createChipset(std::string line, Circuit &mainBoard, Factory &factory);
+            // Circuit getMainBoard() const;
     };
 }
 
