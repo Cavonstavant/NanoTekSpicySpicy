@@ -16,8 +16,10 @@ namespace nts {
         return nts::Tristate::FALSE;
     }
     Tristate orGate(Tristate a, Tristate b) {
-        if (a == nts::Tristate::UNDEFINED || b == nts::Tristate::UNDEFINED)
-            return nts::Tristate::UNDEFINED;
+        if (a == nts::Tristate::UNDEFINED)
+                return b;
+        if (b == nts::Tristate::UNDEFINED)
+                return a;
         if (a == nts::Tristate::TRUE || b == nts::Tristate::TRUE)
             return nts::Tristate::TRUE;
         return nts::Tristate::FALSE;
