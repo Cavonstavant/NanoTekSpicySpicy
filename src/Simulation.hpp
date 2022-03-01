@@ -12,18 +12,18 @@
 #define SIMULATION_HPP_
 
 namespace nts {
-    class Simulation {
-        public:
-            Simulation(std::string const &fileName);
-            ~Simulation();
-            void runSimulation();
-            void execCommand(std::string const &command);
+class Simulation {
+public:
+    Simulation(std::string const &fileName);
+    ~Simulation();
+    void runSimulation();
+    void execCommand(std::string const &command);
 
-        protected:
-        private:
-            Parser _parser;
-            // IComponent &_mainBoard;
-    };
+protected:
+private:
+    Parser _parser;
+    // IComponent &_mainBoard;
+};
 }
 
 #endif /* !SIMULATION_HPP_ */
