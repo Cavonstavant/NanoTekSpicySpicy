@@ -42,6 +42,6 @@ namespace nts {
         [[nodiscard]] std::unique_ptr<nts::IComponent> create4514() const;
         [[nodiscard]] std::unique_ptr<nts::IComponent> create4801() const;
     };
-}
+}// namespace nts
 
 #endif /* !FACTORY_HPP_ */
