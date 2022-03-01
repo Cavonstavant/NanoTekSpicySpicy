@@ -14,7 +14,8 @@
  * @brief add a new component to the circuit
  * @param component
  */
-void nts::Circuit::addComponent(IComponent &component) {
+void nts::Circuit::addComponent(std::unique_ptr<IComponent> component)
+{
     _components.emplace_back(component);
 }
 
@@ -22,7 +23,8 @@ void nts::Circuit::addComponent(IComponent &component) {
  * @brief remove a component from the circuit
  * @param component
  */
-void nts::Circuit::removeComponent(nts::IComponent &component) {
+void nts::Circuit::removeComponent(std::unique_ptr<IComponent> component)
+{
     for (auto it = _components.begin(); it != _components.end(); ++it) {
         if ((it->get()) == component) {
             _components.erase(it);
@@ -31,9 +33,10 @@ void nts::Circuit::removeComponent(nts::IComponent &component) {
     }
 }
 
-void nts::Circuit::simulate(std::size_t tick) {
-    for (auto &component: _components) {
-        component.get().simulate(tick);
+void nts::Circuit::simulate(std::size_t tick)
+{
+    for (auto &component : _components) {
+        (*component.get()).simulate(tick);
     }
 }
 
@@ -47,8 +50,8 @@ nts::Tristate nts::Circuit::compute(std::size_t pin) {
  */
 void nts::Circuit::dump() const {
     std::cout << "{ " << std::endl;
-    for (auto &component: _components)
-        component.get().dump();
+    for (auto &component : _components)
+        (*component.get()).dump();
     std::cout << "}" << std::endl;
 }
 
