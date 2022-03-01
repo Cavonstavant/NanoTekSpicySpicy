@@ -29,7 +29,7 @@ namespace nts {
             if (pin == 7 || pin == 14)
                 throw nts::Exception::InvalidPinException("Reserved pin", pin);
             if ((pin < 1 || pin > 14))
-                throw nts::Exception::InvalidPinException("Pin not in rage", pin);
+                throw nts::Exception::InvalidPinException("Pin not in range", pin);
             if (pin != 3 && pin != 4 && pin != 10 && pin != 11)
                 throw nts::Exception::InvalidPinException("Trying to compute the state of an input pin", pin);
             switch (pin) {// NOLINT(hicpp-multiway-paths-covered)
