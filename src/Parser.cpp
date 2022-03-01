@@ -62,7 +62,7 @@ size_t strtosize(const std::string &str)
  * @throw nts::ParserError
  * @throw nts::Exception::RuntimeException if the file can't be open
  */
-void nts::Parser::createLink(std::string line, Circuit &mainBoard, Factory &factory)
+void nts::Parser::createLink(std::string line, Factory &factory)
 {
     std::string component1;
     std::string component2;
@@ -103,7 +103,7 @@ void nts::Parser::createLink(std::string line, Circuit &mainBoard, Factory &fact
     // }
 }
 
-void nts::Parser::createChipset(std::string line, Circuit &mainBoard, Factory &factory)
+void nts::Parser::createChipset(std::string line, Factory &factory)
 {
     std::string type;
     std::string name;

@@ -26,8 +26,8 @@ namespace nts {
         std::string trim(const std::string &str);
         std::string trimMiddle(std::string str);
         int findAny(std::string str, const char *chars);
-        void createLink(std::string line, Circuit &mainBoard, Factory &factory);
-        void createChipset(std::string line, Circuit &mainBoard, Factory &factory);
+        void createLink(std::string line, Factory &factory);
+        void createChipset(std::string line, Factory &factory);
         // Circuit getMainBoard() const;
     };
 }// namespace nts
