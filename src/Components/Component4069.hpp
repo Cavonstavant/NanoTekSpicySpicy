@@ -26,7 +26,20 @@ namespace nts {
                     throw nts::Exception::InvalidPinException("Pin not in range", pin);
                 if (pin != 2 && pin != 4 && pin != 6 && pin != 8 && pin != 10 && pin != 12)
                     throw nts::Exception::InvalidPinException("Trying to compute the state of an input pin", pin);
-                return nts::notGate(this->getState(pin - 1));
+                switch (pin) {
+                    case 2:
+                        return (nts::notGate(this->getState(1)));
+                    case 4:
+                        return (nts::notGate(this->getState(3)));
+                    case 6:
+                        return (nts::notGate(this->getState(5)));
+                    case 8:
+                        return (nts::notGate(this->getState(9)));
+                    case 10:
+                        return (nts::notGate(this->getState(11)));
+                    case 12:
+                        return (nts::notGate(this->getState(13)));
+                }
             }
             ~Component4069() override = default;
 
