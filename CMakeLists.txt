@@ -4,6 +4,7 @@ project(nanotekspice)
 set(CMAKE_CXX_STANDARD 20)
 
 set(SRC src/basic_gates/basic_gates.cpp
+        src/basic_gates/basic_gates.hpp
         src/Components/Component4001.hpp
         src/Components/Component4008.hpp
         src/Components/Component4011.hpp
@@ -18,11 +19,11 @@ set(SRC src/basic_gates/basic_gates.cpp
         src/Components/Component4514.hpp
         src/Components/Component4801.hpp
         src/Components/IOComponent.hpp
+        src/Circuit.cpp
+        src/Circuit.hpp
         src/IComponent.hpp
         src/AComponent.cpp
         src/AComponent.hpp
-        src/Circuit.cpp
-        src/Circuit.hpp
         src/Parser.cpp
         src/Parser.hpp
         src/Exception.cpp

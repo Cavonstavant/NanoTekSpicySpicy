@@ -1,48 +1,36 @@
 /*
 ** EPITECH PROJECT, 2022
-** bootstrap_nanotekspice
+** nanotekspice
 ** File description:
 ** Circuit
 */
 
-#ifndef CIRCUIT_HPP_
-#define CIRCUIT_HPP_
+#ifndef NANOTEKSPICE_CIRCUIT_HPP
+#define NANOTEKSPICE_CIRCUIT_HPP
 
+#include "Components/IOComponent.hpp"
+#include "Exception.hpp"
 #include "IComponent.hpp"
-#include <list>
-#include <memory>
-
 
 namespace nts {
-    class Circuit : public IComponent {
-        public:
-        Circuit() = default;
-        ~Circuit() override = default;
-        void addComponent(std::unique_ptr<nts::IComponent>);
-        void removeComponent(std::unique_ptr<nts::IComponent>);
-        void setLink(std::size_t, nts::IComponent &, std::size_t) override;
-        void setPin(std::size_t, nts::IComponent &, std::size_t) override;
-        void addInput(IComponent &);
-        void addOutput(IComponent &);
-        inline bool operator!=(const IComponent &other) const override {
-            return !(*this == other);
-        }
-        [[nodiscard]] std::string getName() const override = 0;
-        void setName(const std::string &) override = 0;
-        [[nodiscard]] nts::Tristate pollState(std::size_t) const override;
-        void setState(std::size_t, nts::Tristate) override;
-        void simulate(std::size_t) override;
-        void dump() const override;
-        Tristate compute(std::size_t) override;
 
-        protected:
-        private:
-        std::list<std::reference_wrapper<std::unique_ptr<IComponent>>> _components;
-        std::list<std::reference_wrapper<std::unique_ptr<IComponent>>> _inputs;
-        std::list<std::reference_wrapper<std::unique_ptr<IComponent>>> _outputs;
-        std::list<std::pair<std::size_t, Tristate>> _inputsBuffer;
-        std::list<std::pair<std::size_t, Tristate>> _outputsBuffer;
+    class Circuit {
+    public:
+        Circuit() = default;
+        ~Circuit() = default;
+
+        void addComponent(std::string const &name, IComponent &component);
+        void addInputComponent(std::string const &name, IComponent &inputComponent);
+        void addOutputComponent(std::string const &name, IComponent &outputComponent);
+        void dump() const;
+        void simulate(std::string const &inputs, std::string const &outputs);
+
+    private:
+        std::map<std::string, std::reference_wrapper<IComponent>> _internalComponents;
+        std::map<std::string, std::reference_wrapper<IComponent>> _inputComponents;
+        std::map<std::string, std::reference_wrapper<IComponent>> _outputComponents;
     };
+
 }// namespace nts
 
-#endif /* !CIRCUIT_HPP_ */
+#endif//NANOTEKSPICE_CIRCUIT_HPP

@@ -1,101 +1,74 @@
 /*
 ** EPITECH PROJECT, 2022
-** bootstrap_nanotekspice
+** nanotekspice
 ** File description:
 ** Circuit
 */
 
 #include "Circuit.hpp"
-#include "Components/IOComponent.hpp"
-#include "Exception.hpp"
-#include <iostream>
 
 /**
- * @brief add a new component to the circuit
+ * @brief add a component to the circuit
+ * @param name
  * @param component
+ * @throw nts::Exception::InvalidComponentException if the component is an IOComponent
  */
-void nts::Circuit::addComponent(std::unique_ptr<IComponent> component) {
-    _components.emplace_back(component);
+
+void nts::Circuit::addComponent(const std::string &name,
+                                IComponent &component)
+{
+    //    auto *ioComponent = dynamic_cast<nts::IOComponent *>(component);
+    //    if (ioComponent)
+    //        throw nts::Exception::InvalidComponentException("Can't add an IO component as an internal component");
+    //    _internalComponents[name] = std::ref(component);
 }
 
 /**
- * @brief remove a component from the circuit
- * @param component
+ * @brief add an input to the circuit
+ * @param name
+ * @param inputComponent
+ * @throw nts::Exception::InvalidComponentException if the component is not an IOComponent
  */
-void nts::Circuit::removeComponent(std::unique_ptr<IComponent> component) {
-    for (auto it = _components.begin(); it != _components.end(); ++it) {
-        if ((it->get()) == component) {
-            _components.erase(it);
-            return;
-        }
-    }
-}
-
-void nts::Circuit::simulate(std::size_t tick) {
-    for (auto &component: _components) {
-        (*component.get()).simulate(tick);
-    }
-}
-
-nts::Tristate nts::Circuit::compute(std::size_t pin) {
-
-    return (Tristate::UNDEFINED);
+void nts::Circuit::addInputComponent(const std::string &name,
+                                     IComponent &inputComponent)
+{
+    auto *ioComponent = dynamic_cast<nts::IOComponent *>(&inputComponent);
+    if (ioComponent != nullptr)
+        throw nts::Exception::InvalidComponentException("Can't add an internal component as an input component");
+    //    _inputComponents[name] = inputComponent;
 }
 
 /**
- * @brief display the circuit infos
+ * @brief add an output to the circuit
+ * @param name
+ * @param inputComponent
+ * @throw nts::Exception::InvalidComponentException if the component is not an IOComponent
  */
-void nts::Circuit::dump() const {
-    std::cout << "{ " << std::endl;
-    for (auto &component: _components)
-        (*component.get()).dump();
-    std::cout << "}" << std::endl;
+void nts::Circuit::addOutputComponent(const std::string &name,
+                                      IComponent &outputComponent)
+{
+    auto *ioComponent = dynamic_cast<nts::IOComponent *>(&outputComponent);
+    if (dynamic_cast<std::unique_ptr<nts::IOComponent> &>(outputComponent) == nullptr)
+        throw nts::Exception::InvalidComponentException("Can't add an internal component as an output component");
+    //    _outputComponents[name] = outputComponent;
 }
 
 /**
- * @brief will set a link between the circuit at and a component
- * @param pin a pin of the circuit
- * @param other the component to connect to
- * @param otherPin the pin of the component
- * @warning pin and otherPin must be valid
- * @warning other must not be an IOComponent, use addInput or addOutput instead
- * @throw nts::Exception::InvalidPinException if pin or otherPin are invalid
- * @throw nts::Exception::InvalidTypeException if the component is not of a valid type
+ * @brief dump the configuration of the circuit
  */
-void nts::Circuit::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) {
-    if (dynamic_cast<nts::IOComponent *>(&other) != nullptr)
-        throw nts::Exception::InvalidTypeException("other must not be an IOComponent");
+void nts::Circuit::dump() const
+{
+    //    for (auto &component: _internalComponents) {
+    //        std::get<std::reference_wrapper<IComponent>>(component).get().dump();
+    //    }
 }
 
 /**
- * @brief will set a link between the circuit at and a component
- * @param pin a pin of the circuit
- * @param other the component to connect to
- * @param otherPin the pin of the component
- * @warning pin and otherPin must be valid
- * @warning other must not be an IOComponent, use addInput or addOutput instead
- * @throw nts::Exception::InvalidPinException if pin or otherPin are invalid
- * @throw nts::Exception::InvalidTypeException if the component is not of a valid type
+ * @brief simulate the circuit
+ * @param inputs
+ * @param outputs
+ * This method assumes that all the link are set
  */
-void nts::Circuit::setPin(std::size_t pin, nts::IComponent &other, std::size_t otherPin) {
-    if (dynamic_cast<nts::IOComponent *>(&other) != nullptr)
-        throw nts::Exception::InvalidTypeException("other must not be an IOComponent");
-}
-
-/**
- * @brief will set a link between the circuit at and an IOComponent
- * @param new_component
- * @throw nts::Exception::I
- */
-void nts::Circuit::addInput(nts::IComponent &new_component) {
-}
-
-void nts::Circuit::addOutput(nts::IComponent &) {
-}
-
-nts::Tristate nts::Circuit::pollState(std::size_t) const {
-    return nts::Tristate::TRUE;
-}
-
-void nts::Circuit::setState(std::size_t, nts::Tristate) {
+void nts::Circuit::simulate(const std::string &inputs, const std::string &outputs)
+{
 }
