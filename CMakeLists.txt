@@ -21,8 +21,6 @@ set(SRC src/basic_gates/basic_gates.cpp
         src/IComponent.hpp
         src/AComponent.cpp
         src/AComponent.hpp
-        src/Circuit.cpp
-        src/Circuit.hpp
         src/Parser.cpp
         src/Parser.hpp
         src/Exception.cpp
