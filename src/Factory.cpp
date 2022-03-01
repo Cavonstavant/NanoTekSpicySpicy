@@ -32,7 +32,7 @@ nts::Factory::~Factory()
 {
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::createComponent(const std::string& type)
+std::unique_ptr<nts::IComponent> nts::Factory::createComponent(const std::string &type)
 {
     try {
         return _factoryMap[type]();
@@ -73,42 +73,52 @@ std::unique_ptr<nts::IComponent> nts::Factory::create4040() const
     return nullptr;
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::create4008() const {
+std::unique_ptr<nts::IComponent> nts::Factory::create4008() const
+{
     return nullptr;
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::create4011() const {
+std::unique_ptr<nts::IComponent> nts::Factory::create4011() const
+{
     return nullptr;
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::create4017() const {
+std::unique_ptr<nts::IComponent> nts::Factory::create4017() const
+{
     return nullptr;
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::create4030() const {
+std::unique_ptr<nts::IComponent> nts::Factory::create4030() const
+{
     return nullptr;
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::create4069() const {
+std::unique_ptr<nts::IComponent> nts::Factory::create4069() const
+{
     return nullptr;
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::create4071() const {
+std::unique_ptr<nts::IComponent> nts::Factory::create4071() const
+{
     return nullptr;
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::create4081() const {
+std::unique_ptr<nts::IComponent> nts::Factory::create4081() const
+{
     return nullptr;
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::create4094() const {
+std::unique_ptr<nts::IComponent> nts::Factory::create4094() const
+{
     return nullptr;
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::create4514() const {
+std::unique_ptr<nts::IComponent> nts::Factory::create4514() const
+{
     return nullptr;
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::create4801() const {
+std::unique_ptr<nts::IComponent> nts::Factory::create4801() const
+{
     return nullptr;
 }

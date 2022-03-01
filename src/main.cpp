@@ -13,7 +13,8 @@ int main(void)
     try {
         yeet;
     } catch (nts::Exception::YeetException ex) {
-        std::cout << "YeetException" << " " << ex.what() << std::endl;
+        std::cout << "YeetException"
+                  << " " << ex.what() << std::endl;
     }
     return 0;
 }
