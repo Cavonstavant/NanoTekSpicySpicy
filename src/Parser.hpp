@@ -16,12 +16,12 @@
 
 namespace nts {
     class Parser {
-        public:
+    public:
         Parser();
         ~Parser();
         void fillCircuit(const std::string &, Circuit &);
 
-        private:
+    private:
         std::vector<std::unique_ptr<nts::IComponent>> _buffer;
         std::string trim(const std::string &str);
         std::string trimMiddle(std::string str);
