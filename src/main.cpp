@@ -11,8 +11,8 @@
 int main(void)
 {
     try {
-        yeet;
-    } catch (nts::Exception::YeetException ex) {
+        throw nts::Exception::InvalidPinException("Invalid pin", 0);
+    } catch (nts::Exception::InvalidPinException ex) {
         std::cout << "YeetException" << " " << ex.what() << std::endl;
     }
     return 0;
