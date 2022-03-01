@@ -8,8 +8,6 @@
 #ifndef NANOTEKSPICE_EXCEPTION_HPP
 #define NANOTEKSPICE_EXCEPTION_HPP
 
-#define yeet throw nts::Exception::YeetException()
-
 #include <exception>
 #include <string>
 
@@ -28,12 +26,6 @@ namespace nts {
 }// namespace nts
 
 namespace nts::Exception {
-    class YeetException : public NtsException {
-        public:
-        explicit YeetException(std::string const &message = "yeet") : NtsException(message){};
-        // public:
-        //     const char *what() const noexcept { return "yeet"; }
-    };
     class ParserException : public NtsException {
         public:
         explicit ParserException(std::string const &message) : NtsException(message){};
@@ -115,14 +107,6 @@ namespace nts::Exception {
     class InvalidComponentNameException : public InvalidComponentException {
         public:
         explicit InvalidComponentNameException(std::string const &message) : InvalidComponentException(message){};
-    };
-    class RickException : public YeetException {
-        public:
-        RickException() : YeetException("Never gonna give you up, never gonna let you down, never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye, never gonna tell a lie and hurt you."){};
-    };
-    class AAAAAAAAAAAAAAAAAAAAAAAAException : public YeetException {
-        public:
-        AAAAAAAAAAAAAAAAAAAAAAAAException() : YeetException("AAAAAAAAAAAAAAAAAAAAAAAA"){};
     };
     class VeryStupidUserError : public InvalidSyntaxException {
         public:

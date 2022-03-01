@@ -13,6 +13,7 @@
  * @param component
  * @throw nts::Exception::InvalidComponentException if the component is an IOComponent
  */
+
 void nts::Circuit::addComponent(const std::string &name,
                                 IComponent & component) {
 //    auto *ioComponent = dynamic_cast<nts::IOComponent *>(component);
@@ -33,6 +34,7 @@ void nts::Circuit::addInputComponent(const std::string &name,
     if (ioComponent != nullptr)
         throw nts::Exception::InvalidComponentException("Can't add an internal component as an input component");
 //    _inputComponents[name] = inputComponent;
+
 }
 
 /**
