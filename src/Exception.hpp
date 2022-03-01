@@ -108,6 +108,10 @@ namespace nts::Exception {
         public:
         explicit InvalidComponentNameException(std::string const &message) : InvalidComponentException(message){};
     };
+    class VeryStupidUserError : public InvalidSyntaxException {
+        public:
+        VeryStupidUserError(std::string const &message = "please stop") : InvalidSyntaxException(message){};
+    };
 }// namespace nts::Exception
 
 #endif /* !NANOTEKSPICE_EXCEPTION_HPP */

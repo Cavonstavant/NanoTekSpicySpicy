@@ -22,8 +22,8 @@ namespace nts {
         IOComponent(IOType type) {
             _type = type;
         };
-        IOComponent(const IOComponent &) = default;
-        IOComponent &operator=(const IOComponent &) = delete;
+        IOComponent(const IOComponent &other) = default;
+        IOComponent &operator=(const IOComponent &) = default;
         ~IOComponent() override = default;
         nts::Tristate compute(std::size_t pin) override {
             if (pin == 1)
