@@ -8,12 +8,12 @@
 #include "Exception.hpp"
 #include <iostream>
 
-int main(void)
-{
+int main(void) {
     try {
         throw nts::Exception::InvalidPinException("Invalid pin", 0);
     } catch (nts::Exception::InvalidPinException ex) {
-        std::cout << "YeetException" << " " << ex.what() << std::endl;
+        std::cout << "YeetException"
+                  << " " << ex.what() << std::endl;
     }
     return 0;
 }
