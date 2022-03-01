@@ -8,7 +8,8 @@
 #include "Factory.hpp"
 #include "Components/IOComponent.hpp"
 
-nts::Factory::Factory() {
+nts::Factory::Factory()
+{
     _factoryMap["input"] = std::bind(&nts::Factory::createInput, this);
     _factoryMap["output"] = std::bind(&nts::Factory::createOutput, this);
     _factoryMap["2716"] = std::bind(&nts::Factory::create2716, this);
@@ -27,10 +28,12 @@ nts::Factory::Factory() {
     _factoryMap["4801"] = std::bind(&nts::Factory::create4801, this);
 }
 
-nts::Factory::~Factory() {
+nts::Factory::~Factory()
+{
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::createComponent(const std::string &type) {
+std::unique_ptr<nts::IComponent> nts::Factory::createComponent(const std::string& type)
+{
     try {
         return _factoryMap[type]();
     } catch (const std::exception) {
@@ -38,29 +41,35 @@ std::unique_ptr<nts::IComponent> nts::Factory::createComponent(const std::string
     }
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::createInput() const {
+std::unique_ptr<nts::IComponent> nts::Factory::createInput() const
+{
     IOComponent component(INPUT);
     return std::make_unique<IOComponent>(component);
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::createOutput() const {
+std::unique_ptr<nts::IComponent> nts::Factory::createOutput() const
+{
     IOComponent component(OUTPUT);
     return std::make_unique<IOComponent>(component);
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::create2716() const {
+std::unique_ptr<nts::IComponent> nts::Factory::create2716() const
+{
     return nullptr;
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::create4001() const {
+std::unique_ptr<nts::IComponent> nts::Factory::create4001() const
+{
     return nullptr;
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::create4013() const {
+std::unique_ptr<nts::IComponent> nts::Factory::create4013() const
+{
     return nullptr;
 }
 
-std::unique_ptr<nts::IComponent> nts::Factory::create4040() const {
+std::unique_ptr<nts::IComponent> nts::Factory::create4040() const
+{
     return nullptr;
 }
 

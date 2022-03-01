@@ -13,12 +13,12 @@
 namespace nts {
     class Component2716 : public AComponent {
         public:
-        Component2716();
-        ~Component2716();
+            Component2716();
+            ~Component2716();
 
         protected:
         private:
     };
-}// namespace nts
+}
 
 #endif /* !COMPONENT2716_HPP_ */

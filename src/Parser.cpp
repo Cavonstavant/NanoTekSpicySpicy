@@ -60,7 +60,6 @@ size_t strtosize(const std::string &str)
  * @param file
  * @param circuit
  * @throw nts::ParserError
- * @throw nts::Exception::RuntimeException if the file can't be open
  */
 void nts::Parser::createLink(std::string line, Circuit &mainBoard, Factory &factory)
 {
