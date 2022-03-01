@@ -10,6 +10,9 @@
 
 #include <string>
 #include <memory>
+#include <map>
+#include <functional>
+#include "IComponent.hpp"
 #include "Circuit.hpp"
 
 namespace nts {
@@ -17,22 +20,27 @@ namespace nts {
         public:
             Factory();
             ~Factory();
+            // std::function<std::unique_ptr<IComponent>(const std::string&)> getCreateFunction(const std::string&);
             std::unique_ptr<nts::IComponent> createComponent(const std::string& type);
         protected:
         private:
-            [[nodiscard]]std::unique_ptr<nts::IComponent> create4001(const std::string &name) const;
-            [[nodiscard]]std::unique_ptr<nts::IComponent> create4008(const std::string &name) const;
-            [[nodiscard]]std::unique_ptr<nts::IComponent> create4011(const std::string &name) const;
-            [[nodiscard]]std::unique_ptr<nts::IComponent> create4013(const std::string &name) const;
-            [[nodiscard]]std::unique_ptr<nts::IComponent> create4017(const std::string &name) const;
-            [[nodiscard]]std::unique_ptr<nts::IComponent> create4030(const std::string &name) const;
-            [[nodiscard]]std::unique_ptr<nts::IComponent> create4040(const std::string &name) const;
-            [[nodiscard]]std::unique_ptr<nts::IComponent> create4069(const std::string &name) const;
-            [[nodiscard]]std::unique_ptr<nts::IComponent> create4071(const std::string &name) const;
-            [[nodiscard]]std::unique_ptr<nts::IComponent> create4081(const std::string &name) const;
-            [[nodiscard]]std::unique_ptr<nts::IComponent> create4094(const std::string &name) const;
-            [[nodiscard]]std::unique_ptr<nts::IComponent> create4514(const std::string &name) const;
-            [[nodiscard]]std::unique_ptr<nts::IComponent> create4801(const std::string &name) const;
+            std::map<std::string, std::function<std::unique_ptr<nts::IComponent>()>> _factoryMap;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> createInput() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> createOutput() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create2716() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4001() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4008() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4011() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4013() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4017() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4030() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4040() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4069() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4071() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4081() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4094() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4514() const;
+            [[nodiscard]]std::unique_ptr<nts::IComponent> create4801() const;
     };
 }
 

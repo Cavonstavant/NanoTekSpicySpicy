@@ -17,110 +17,117 @@
 namespace nts {
     class NtsException : public std::exception {
         public:
-            explicit NtsException(std::string const &message = "Not giving the context is bad");
-            [[nodiscard]] const char *what() const noexcept override;
+        explicit NtsException(std::string const &message = "Not giving the context is bad");
+        [[nodiscard]] const char *what() const noexcept override;
 
         protected:
-            std::string _message;
+        std::string _message;
 
         private:
     };
-}
+}// namespace nts
 
 namespace nts::Exception {
-    class YeetException : public NtsException
-    {
+    class YeetException : public NtsException {
         public:
-            explicit YeetException(std::string const &message = "yeet") : NtsException(message) {};
+        explicit YeetException(std::string const &message = "yeet") : NtsException(message){};
         // public:
         //     const char *what() const noexcept { return "yeet"; }
     };
     class ParserException : public NtsException {
         public:
-            explicit ParserException(std::string const &message) : NtsException(message) {};
+        explicit ParserException(std::string const &message) : NtsException(message){};
     };
     class InvalidReadException : public ParserException {
         public:
-            explicit InvalidReadException(std::string const &message) : ParserException(message) {};
+        explicit InvalidReadException(std::string const &message) : ParserException(message){};
     };
     class InvalidSyntaxException : public InvalidReadException {
         public:
-            explicit InvalidSyntaxException(std::string const &message) : InvalidReadException(message) {};
+        explicit InvalidSyntaxException(std::string const &message) : InvalidReadException(message){};
     };
     class RuntimeException : public NtsException {
         public:
-            explicit RuntimeException(std::string const &message) : NtsException(message) {};
+        explicit RuntimeException(std::string const &message) : NtsException(message){};
     };
     class ComputeException : public RuntimeException {
         public:
-            explicit ComputeException(std::string const &message) : RuntimeException(message) {};
+        explicit ComputeException(std::string const &message) : RuntimeException(message){};
     };
     class SimulateException : public RuntimeException {
         public:
-            explicit SimulateException(std::string const &message) : RuntimeException(message) {};
+        explicit SimulateException(std::string const &message) : RuntimeException(message){};
     };
     class InvalidPinException : public RuntimeException {
         public:
-            InvalidPinException() = delete;
-            explicit InvalidPinException(std::string const &message, size_t pin) : RuntimeException(message) {};
-            /**
-             * @brief get the invalid pin number
-             * @return pin number
-             */
-            [[nodiscard]] size_t getPin() const noexcept { return _pin; }
+        InvalidPinException() = delete;
+        explicit InvalidPinException(std::string const &message, size_t pin) : RuntimeException(message){};
+        /**
+    * @brief get the invalid pin number
+    * @return pin number
+    */
+        [[nodiscard]] size_t getPin() const noexcept {
+            return _pin;
+        }
+
         private:
-            size_t _pin{};
+        size_t _pin{};
     };
     class UnknownPinException : public RuntimeException {
         public:
-            UnknownPinException() = delete;
-            explicit UnknownPinException(std::string const &message, size_t pin) : RuntimeException(message) {};
-            /**
-             * @brief Get the missing Pin number
-             * @return pin number
-             */
-            [[nodiscard]] size_t getPin() const noexcept { return _pin; }
+        UnknownPinException() = delete;
+        explicit UnknownPinException(std::string const &message, size_t pin) : RuntimeException(message){};
+        /**
+    * @brief Get the missing Pin number
+    * @return pin number
+    */
+        [[nodiscard]] size_t getPin() const noexcept {
+            return _pin;
+        }
+
         private:
-            size_t _pin{};
+        size_t _pin{};
     };
     class InvalidTypeException : public RuntimeException {
         public:
-            explicit InvalidTypeException(std::string const &message) : RuntimeException(message) {};
+        explicit InvalidTypeException(std::string const &message) : RuntimeException(message){};
     };
     class InvalidValueException : public RuntimeException {
         public:
-            explicit InvalidValueException(std::string const &message) : RuntimeException(message) {};
+        explicit InvalidValueException(std::string const &message) : RuntimeException(message){};
     };
     class InvalidLinkException : public RuntimeException {
         public:
-            explicit InvalidLinkException(std::string const &message) : RuntimeException(message) {};
+        explicit InvalidLinkException(std::string const &message) : RuntimeException(message){};
     };
     class InvalidComponentException : public RuntimeException {
         public:
-            explicit InvalidComponentException(std::string const &message) : RuntimeException(message) {};
+        explicit InvalidComponentException(std::string const &message) : RuntimeException(message){};
     };
     class InvalidCircuitException : public RuntimeException {
         public:
-            explicit InvalidCircuitException(std::string const &message) : RuntimeException(message) {};
+        explicit InvalidCircuitException(std::string const &message) : RuntimeException(message){};
     };
     class InvalidFileException : public RuntimeException {
         public:
-            explicit InvalidFileException(std::string const &message) : RuntimeException(message) {};
+        explicit InvalidFileException(std::string const &message) : RuntimeException(message){};
     };
     class InvalidComponentNameException : public InvalidComponentException {
         public:
-            explicit InvalidComponentNameException(std::string const &message) : InvalidComponentException(message) {};
+        explicit InvalidComponentNameException(std::string const &message) : InvalidComponentException(message){};
     };
-    class RickException : public YeetException
-    {
+    class RickException : public YeetException {
         public:
-            RickException() : YeetException("Never gonna give you up, never gonna let you down, never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye, never gonna tell a lie and hurt you.") {};
+        RickException() : YeetException("Never gonna give you up, never gonna let you down, never gonna run around and desert you. Never gonna make you cry, never gonna say goodbye, never gonna tell a lie and hurt you."){};
     };
-    class AAAAAAAAAAAAAAAAAAAAAAAAException : public YeetException
-    {
+    class AAAAAAAAAAAAAAAAAAAAAAAAException : public YeetException {
         public:
-            AAAAAAAAAAAAAAAAAAAAAAAAException() : YeetException("AAAAAAAAAAAAAAAAAAAAAAAA") {};
+        AAAAAAAAAAAAAAAAAAAAAAAAException() : YeetException("AAAAAAAAAAAAAAAAAAAAAAAA"){};
     };
-}
+    class VeryStupidUserError : public InvalidSyntaxException {
+        public:
+        VeryStupidUserError(std::string const &message = "please stop") : InvalidSyntaxException(message){};
+    };
+}// namespace nts::Exception
 
 #endif /* !NANOTEKSPICE_EXCEPTION_HPP */
