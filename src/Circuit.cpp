@@ -15,11 +15,12 @@
  */
 
 void nts::Circuit::addComponent(const std::string &name,
-                                IComponent & component) {
-//    auto *ioComponent = dynamic_cast<nts::IOComponent *>(component);
-//    if (ioComponent)
-//        throw nts::Exception::InvalidComponentException("Can't add an IO component as an internal component");
-//    _internalComponents[name] = std::ref(component);
+                                IComponent &component)
+{
+    //    auto *ioComponent = dynamic_cast<nts::IOComponent *>(component);
+    //    if (ioComponent)
+    //        throw nts::Exception::InvalidComponentException("Can't add an IO component as an internal component");
+    //    _internalComponents[name] = std::ref(component);
 }
 
 /**
@@ -29,12 +30,12 @@ void nts::Circuit::addComponent(const std::string &name,
  * @throw nts::Exception::InvalidComponentException if the component is not an IOComponent
  */
 void nts::Circuit::addInputComponent(const std::string &name,
-                                     IComponent & inputComponent) {
+                                     IComponent &inputComponent)
+{
     auto *ioComponent = dynamic_cast<nts::IOComponent *>(&inputComponent);
     if (ioComponent != nullptr)
         throw nts::Exception::InvalidComponentException("Can't add an internal component as an input component");
-//    _inputComponents[name] = inputComponent;
-
+    //    _inputComponents[name] = inputComponent;
 }
 
 /**
@@ -44,20 +45,22 @@ void nts::Circuit::addInputComponent(const std::string &name,
  * @throw nts::Exception::InvalidComponentException if the component is not an IOComponent
  */
 void nts::Circuit::addOutputComponent(const std::string &name,
-                                      IComponent & outputComponent) {
+                                      IComponent &outputComponent)
+{
     auto *ioComponent = dynamic_cast<nts::IOComponent *>(&outputComponent);
     if (dynamic_cast<std::unique_ptr<nts::IOComponent> &>(outputComponent) == nullptr)
         throw nts::Exception::InvalidComponentException("Can't add an internal component as an output component");
-//    _outputComponents[name] = outputComponent;
+    //    _outputComponents[name] = outputComponent;
 }
 
 /**
  * @brief dump the configuration of the circuit
  */
-void nts::Circuit::dump() const {
-//    for (auto &component: _internalComponents) {
-//        std::get<std::reference_wrapper<IComponent>>(component).get().dump();
-//    }
+void nts::Circuit::dump() const
+{
+    //    for (auto &component: _internalComponents) {
+    //        std::get<std::reference_wrapper<IComponent>>(component).get().dump();
+    //    }
 }
 
 /**
@@ -66,5 +69,6 @@ void nts::Circuit::dump() const {
  * @param outputs
  * This method assumes that all the link are set
  */
-void nts::Circuit::simulate(const std::string &inputs, const std::string &outputs) {
+void nts::Circuit::simulate(const std::string &inputs, const std::string &outputs)
+{
 }

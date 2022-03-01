@@ -8,22 +8,22 @@
 #ifndef FACTORY_HPP_
 #define FACTORY_HPP_
 
-#include <string>
-#include <memory>
-#include <map>
-#include <functional>
 #include "IComponent.hpp"
+#include <functional>
+#include <map>
+#include <memory>
+#include <string>
 
 namespace nts {
     class Factory {
-        public:
+    public:
         Factory();
         ~Factory();
         // std::function<std::unique_ptr<IComponent>(const std::string&)> getCreateFunction(const std::string&);
         std::unique_ptr<nts::IComponent> createComponent(const std::string &type);
 
-        protected:
-        private:
+    protected:
+    private:
         std::map<std::string, std::function<std::unique_ptr<nts::IComponent>()>> _factoryMap;
         [[nodiscard]] std::unique_ptr<nts::IComponent> createInput() const;
         [[nodiscard]] std::unique_ptr<nts::IComponent> createOutput() const;
