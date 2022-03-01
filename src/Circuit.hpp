@@ -9,8 +9,11 @@
 #define NANOTEKSPICE_CIRCUIT_HPP
 
 #include "IComponent.hpp"
+#include "Components/IOComponent.hpp"
+#include "Exception.hpp"
 #include <unordered_map>
 #include <functional>
+#include <memory>
 
 namespace nts
 {
@@ -20,9 +23,9 @@ namespace nts
             Circuit() = default;
             ~Circuit() = default;
 
-            void addComponent(std::string const &name, IComponent &component);
-            void addInputComponent(std::string const &name, IComponent &inputComponent);
-            void addOutputComponent(std::string const &name, IComponent &inputComponent);
+            void addComponent(std::string const &name, std::reference_wrapper<IComponent> component);
+            void addInputComponent(std::string const &name, std::reference_wrapper<IComponent> inputComponent);
+            void addOutputComponent(std::string const &name, std::reference_wrapper<IComponent> outputComponent);
             void dump() const;
             void simulate(std::string const &inputs, std::string const &outputs);
         private:
