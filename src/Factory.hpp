@@ -13,7 +13,6 @@
 #include <map>
 #include <functional>
 #include "IComponent.hpp"
-#include "Circuit.hpp"
 
 namespace nts {
     class Factory {
