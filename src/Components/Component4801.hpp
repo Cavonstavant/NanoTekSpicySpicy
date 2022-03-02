@@ -11,14 +11,14 @@
 #include "../AComponent.hpp"
 
 namespace nts {
-    class Component4801 : public AComponent {
-        public:
-            Component4801() = default;
-            ~Component4801() override = default;
+class Component4801 : public AComponent {
+public:
+    Component4801() = default;
+    ~Component4801() override = default;
 
-        protected:
-        private:
-    };
+protected:
+private:
+};
 }
 
 #endif /* !COMPONENT4801_HPP_ */
