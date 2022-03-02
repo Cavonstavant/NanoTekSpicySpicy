@@ -10,8 +10,8 @@
 #include <stdio.h>
 
 nts::Simulation::Simulation(std::string const &fileName) {
-    // _parser.fillCircuit(fileName);
-    // _mainBoard = _parser.getMainBoard();
+    _parser.fillCircuit(fileName);
+    _mainBoard = _parser.getMainBoard();
 }
 
 nts::Simulation::~Simulation() {

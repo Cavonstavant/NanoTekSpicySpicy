@@ -7,6 +7,7 @@
 
 #include "Factory.hpp"
 #include "Parser.hpp"
+#include "Circuit.hpp"
 
 #ifndef SIMULATION_HPP_
 #define SIMULATION_HPP_
@@ -22,6 +23,7 @@ namespace nts {
         protected:
         private:
         Parser _parser;
+        Circuit _mainBoard;
         // IComponent &_mainBoard;
     };
 }// namespace nts

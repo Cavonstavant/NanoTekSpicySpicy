@@ -19,7 +19,8 @@ namespace nts {
     public:
         Parser();
         ~Parser();
-        void fillCircuit(const std::string &, Circuit &);
+        void fillCircuit(const std::string &);
+        Circuit getMainBoard() const;
 
     private:
         std::vector<std::unique_ptr<nts::IComponent>> _buffer;
@@ -28,7 +29,7 @@ namespace nts {
         int findAny(std::string str, const char *chars);
         void createLink(std::string line, Factory &factory);
         void createChipset(std::string line, Factory &factory);
-        // Circuit getMainBoard() const;
+        Circuit _mainBoard;
     };
 }// namespace nts
 

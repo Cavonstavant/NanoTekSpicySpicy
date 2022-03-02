@@ -24,8 +24,10 @@ namespace nts {
         void addOutputComponent(std::string const &name, IComponent &outputComponent);
         void dump() const;
         void simulate(std::string const &inputs, std::string const &outputs);
+        void setLink(std::string const &name, std::string const &pin, std::string const &otherName, std::string const &otherPin);
 
     private:
+        IComponent &tryGetComponent(const std::string &name);
         std::map<std::string, std::reference_wrapper<IComponent>> _internalComponents;
         std::map<std::string, std::reference_wrapper<IComponent>> _inputComponents;
         std::map<std::string, std::reference_wrapper<IComponent>> _outputComponents;

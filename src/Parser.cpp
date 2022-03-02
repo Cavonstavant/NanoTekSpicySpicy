@@ -12,6 +12,7 @@
 #include "Factory.hpp"
 #include <fstream>
 #include <sstream>
+#include "Circuit.hpp"
 
 nts::Parser::Parser()
 {
@@ -19,6 +20,11 @@ nts::Parser::Parser()
 
 nts::Parser::~Parser()
 {
+}
+
+nts::Circuit nts::Parser::getMainBoard() const
+{
+    return _mainBoard;
 }
 
 // nts::Circuit nts::Parser::getMainBoard() const {
@@ -85,6 +91,7 @@ void nts::Parser::createLink(std::string line, Factory &factory)
         throw nts::Exception::VeryStupidUserError("You can't link a component's pin to itself");
 
     try {
+        _mainBoard.setLink(component1, pin1, component2, pin2);
         // _mainBoard[component1].get().setLink(strtosize(pin1), _mainBoard[component2].get(), strtosize(pin2));
     } catch (std::exception &e) {
         throw nts::Exception::InvalidSyntaxException("Invalid syntax");
@@ -115,6 +122,8 @@ void nts::Parser::createChipset(std::string line, Factory &factory)
         throw nts::Exception::InvalidReadException("Invalid syntax");
     }
     try {
+        _mainBoard.addComponent(factory.createComponent(type));
+        // _mainBoard.
         // _mainBoard.emplace(std::make_pair(name, factory.createComponent(type)));
         // mainBoard.addComponent(factory.createComponent(type));
     } catch (std::exception) {
@@ -122,7 +131,7 @@ void nts::Parser::createChipset(std::string line, Factory &factory)
     }
 }
 
-void nts::Parser::fillCircuit(const std::string &file, Circuit &circuit)
+void nts::Parser::fillCircuit(const std::string &file)
 {
     std::ifstream input(file);
     if (!input.is_open())

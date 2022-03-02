@@ -6,6 +6,9 @@
 */
 
 #include "Circuit.hpp"
+#include "Exception.hpp"
+#include <iostream>
+#include <sstream>
 
 /**
  * @brief add a component to the circuit
@@ -71,4 +74,39 @@ void nts::Circuit::dump() const
  */
 void nts::Circuit::simulate(const std::string &inputs, const std::string &outputs)
 {
+}
+
+nts::IComponent &nts::Circuit::tryGetComponent(const std::string &name)
+{
+    try {
+        return _inputComponents[name];
+    } catch (std::exception &) {
+        try {
+            return _outputComponents[name];
+        } catch (std::exception &e) {
+            try {
+                return _internalComponents[name];
+            } catch (std::exception &) {
+                throw Exception::InvalidComponentException("Can't find the component");
+            }
+        }
+    }
+}
+
+size_t strtosize(const std::string &str)
+{
+    size_t size = 0;
+    std::stringstream ss;
+    ss << str;
+    ss >> size;
+    return size;
+}
+
+void nts::Circuit::setLink(const std::string &name, const std::string &pin,
+                           const std::string &otherName, const std::string &otherPin)
+{
+    IComponent &component = tryGetComponent(name);
+    IComponent &otherComponent = tryGetComponent(otherName);
+
+    component.setLink(strtosize(pin), otherComponent, strtosize(otherPin));
 }
