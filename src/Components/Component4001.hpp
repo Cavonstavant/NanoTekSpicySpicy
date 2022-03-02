@@ -15,19 +15,19 @@
 namespace nts {
     class Component4001 : public AComponent {
         public:
-        Component4001() = delete;
-        explicit Component4001(const std::string &name) : AComponent(name){};
-        Component4001(const Component4001 &other) = delete;
-        Component4001 &operator=(const Component4001 &other) = delete;
-    /**
+            Component4001() = delete;
+            explicit Component4001(const std::string &name) : AComponent(name){};
+            Component4001(const Component4001 &other) = delete;
+            Component4001 &operator=(const Component4001 &other) = delete;
+            /**
     * @brief Compute the state of the pin
     * @param pin
     * @return the state of the pin
     * @throw nts::Exception::InvalidPinException if the pin is not valid
     */
-        nts::Tristate compute(std::size_t pin) final;
+            nts::Tristate compute(std::size_t pin) final;
 
-        ~Component4001() override = default;
+            ~Component4001() override = default;
 
         protected:
         private:

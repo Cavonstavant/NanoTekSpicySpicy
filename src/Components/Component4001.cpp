@@ -5,8 +5,8 @@
 ** Component2716
 */
 
-#include <string>
 #include "Component4001.hpp"
+#include <string>
 
 nts::Tristate nts::Component4001::compute(std::size_t pin)
 {

@@ -19,6 +19,6 @@ namespace nts {
         protected:
         private:
     };
-}
+}// namespace nts
 
 #endif /* !COMPONENT4071_HPP_ */

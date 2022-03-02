@@ -7,7 +7,8 @@
 
 #include "Component4081.hpp"
 
-nts::Tristate nts::Component4081::compute(std::size_t pin) {
+nts::Tristate nts::Component4081::compute(std::size_t pin)
+{
     if (pin == 7 || pin == 14)
         throw nts::Exception::InvalidPinException("Reserved pin", pin);
     if ((pin < 1 || pin > 14))

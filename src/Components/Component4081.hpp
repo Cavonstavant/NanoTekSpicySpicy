@@ -21,6 +21,7 @@ namespace nts {
             Component4081 &operator=(const Component4081 &other) = delete;
             nts::Tristate compute(std::size_t pin) final;
             ~Component4081() override = default;
+
         protected:
         private:
     };

@@ -15,12 +15,13 @@
 namespace nts {
     class Component4030 : public AComponent {
         public:
-        Component4030() = delete;
-        ~Component4030() override = default;
-        explicit Component4030(const std::string &name) : AComponent(name){};
-        Component4030(const Component4030 &other) = delete;
-        Component4030 &operator=(const Component4030 &other) = delete;
-        nts::Tristate compute(std::size_t pin) final;
+            Component4030() = delete;
+            ~Component4030() override = default;
+            explicit Component4030(const std::string &name) : AComponent(name){};
+            Component4030(const Component4030 &other) = delete;
+            Component4030 &operator=(const Component4030 &other) = delete;
+            nts::Tristate compute(std::size_t pin) final;
+
         protected:
         private:
     };
