@@ -5,8 +5,8 @@
 ** Component2716
 */
 
-#include <string>
 #include "Component4001.hpp"
+#include <string>
 
 nts::Tristate nts::Component4001::compute(std::size_t pin)
 {
@@ -17,12 +17,12 @@ nts::Tristate nts::Component4001::compute(std::size_t pin)
     if (pin != 3 && pin != 4 && pin != 10 && pin != 11)
         throw nts::Exception::InvalidPinException("Trying to compute the state of an input pin", pin);
     switch (pin) {// NOLINT(hicpp-multiway-paths-covered)
-    case 3:
-        return (nts::norGate(this->getState(1), this->getState(2)));
-    case 4:
-        return (nts::norGate(this->getState(5), this->getState(6)));
-    case 10:
-        return (nts::norGate(this->getState(9), this->getState(8)));
+        case 3:
+            return (nts::norGate(this->getState(1), this->getState(2)));
+        case 4:
+            return (nts::norGate(this->getState(5), this->getState(6)));
+        case 10:
+            return (nts::norGate(this->getState(9), this->getState(8)));
     }
     return (nts::norGate(this->getState(13), this->getState(12)));
 }

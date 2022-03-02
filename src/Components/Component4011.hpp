@@ -14,17 +14,18 @@
 
 
 namespace nts {
-class Component4011 : public AComponent {
-public:
-    Component4011() = delete;
-    explicit Component4011(const std::string &name) : AComponent(name) {};
-    Component4011(const Component4011 &other) = delete;
-    Component4011 &operator=(const Component4011 &other) = delete;
-    nts::Tristate compute(std::size_t pin) final;
-    ~Component4011() override = default;
-protected:
-private:
-};
+    class Component4011 : public AComponent {
+        public:
+            Component4011() = delete;
+            explicit Component4011(const std::string &name) : AComponent(name){};
+            Component4011(const Component4011 &other) = delete;
+            Component4011 &operator=(const Component4011 &other) = delete;
+            nts::Tristate compute(std::size_t pin) final;
+            ~Component4011() override = default;
+
+        protected:
+        private:
+    };
 };// namespace nts
 
 #endif /* !COMPONENT4011_HPP_ */
