@@ -11,6 +11,10 @@
 #include "Components/IOComponent.hpp"
 #include "Exception.hpp"
 #include "IComponent.hpp"
+#include <functional>
+#include <map>
+#include <string>
+#include <memory>
 
 namespace nts {
 

@@ -17,6 +17,8 @@ cmake-build-debug/
 
 
 Docs/
+html/
+latex/
 
 Makefile
 cmake_install.cmake
