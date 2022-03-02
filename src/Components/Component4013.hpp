@@ -13,12 +13,12 @@
 namespace nts {
     class Component4013 : public AComponent {
         public:
-            Component4013();
-            ~Component4013();
+            Component4013() = default;
+            ~Component4013() override = default;
 
         protected:
         private:
     };
-};
+};// namespace nts
 
 #endif /* !COMPONENT4013_HPP_ */
