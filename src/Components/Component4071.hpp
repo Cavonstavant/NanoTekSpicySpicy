@@ -13,8 +13,8 @@
 namespace nts {
     class Component4071 : public AComponent {
         public:
-            Component4071();
-            ~Component4071();
+            Component4071() = default;
+            ~Component4071() override = default;
 
         protected:
         private:

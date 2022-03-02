@@ -19,24 +19,14 @@ namespace nts {
     class IOComponent : public AComponent {
         public:
         IOComponent() = delete;
-        IOComponent(IOType type) {
-            _type = type;
-        };
+        explicit IOComponent(IOType type);
         IOComponent(const IOComponent &other) = default;
         IOComponent &operator=(const IOComponent &) = default;
         ~IOComponent() override = default;
-        nts::Tristate compute(std::size_t pin) override {
-            if (pin == 1)
-                return std::get<Tristate>(_states[0]);
-            throw nts::Exception::InvalidPinException("Invalid pin", 1);
-        };
+        nts::Tristate compute(std::size_t pin) override;
         void simulate(std::size_t pin) override {}
-        [[nodiscard]] IOType getType() const {
-            return _type;
-        }
-        void setType(IOType type) {
-            _type = type;
-        }
+        [[nodiscard]] IOType getType() const;
+        void setType(IOType type);
 
         protected:
         private:
