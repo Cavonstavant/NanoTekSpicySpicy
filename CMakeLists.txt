@@ -34,7 +34,9 @@ set(SRC src/basic_gates/basic_gates.cpp
     src/Components/Component4514.cpp
     src/Components/Component4801.cpp
     src/Components/Component2716.cpp
-    src/Components/IOComponent.cpp
+    src/Components/IOComponent.cpp)
+
+set(SRC ${SRC}
     src/Circuit.cpp
     src/Circuit.hpp
     src/IComponent.hpp
@@ -48,8 +50,7 @@ set(SRC src/basic_gates/basic_gates.cpp
     src/Factory.cpp
     src/Simulation.hpp
     src/Simulation.cpp
-    src/main.cpp src/Components/IOComponent.cpp)
-
-set(SRC ${SRC} )
+    src/main.cpp
+    src/Components/IOComponent.cpp)
 
 add_executable(${CMAKE_PROJECT_NAME} ${SRC})
