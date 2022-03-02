@@ -50,4 +50,29 @@ namespace nts {
     {
         return (notGate(orGate(a, b)));
     }
+    // Tristate sumGate(Tristate a, Tristate b, Tristate c)
+    // {
+    //     if (a == nts::Tristate::UNDEFINED || b == nts::Tristate::UNDEFINED || c == nts::Tristate::UNDEFINED)
+    //         return nts::Tristate::UNDEFINED;
+    //     int zero = 0;
+    //     int one = 0;
+    //     if (a == nts::Tristate::TRUE)
+    //         one++;
+    //     if (b == nts::Tristate::TRUE)
+    //         one++;
+    //     if (c == nts::Tristate::TRUE)
+    //         one++;
+    //     if (one == 2)
+    //         return nts::Tristate::TRUE;
+    //     return nts::Tristate::FALSE;
+    // }
+    Tristate sumGateGetCarry(Tristate a, Tristate b, Tristate c)
+    {
+        return xorGate(xorGate(a, b), c);
+    }
+
+    Tristate sumGateGetComputeWithCarry(Tristate a, Tristate b, Tristate c)
+    {
+        return orGate(andGate(a, b), andGate(xorGate(a, b), c));
+    }
 }// namespace nts
