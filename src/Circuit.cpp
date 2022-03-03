@@ -40,7 +40,7 @@ void nts::Circuit::addInputComponent(const std::string &name,
     auto *ioComponent = dynamic_cast<nts::IOComponent *>(&inputComponent);
     if (ioComponent != nullptr)
         throw nts::Exception::InvalidComponentException("Can't add an internal component as an input component");
-    _inputComponents.emplace(inputComponent);
+    _inputComponents.emplace(name, inputComponent);
 }
 
 /**
@@ -55,7 +55,7 @@ void nts::Circuit::addOutputComponent(const std::string &name,
     auto *ioComponent = dynamic_cast<nts::IOComponent *>(&outputComponent);
     if (dynamic_cast<std::unique_ptr<nts::IOComponent> &>(outputComponent) == nullptr)
         throw nts::Exception::InvalidComponentException("Can't add an internal component as an output component");
-    _outputComponents.emplace(outputComponent);
+    _outputComponents.emplace(name, outputComponent);
 }
 
 /**
