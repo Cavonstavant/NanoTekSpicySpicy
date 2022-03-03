@@ -50,7 +50,6 @@ set(SRC ${SRC}
     src/Factory.cpp
     src/Simulation.hpp
     src/Simulation.cpp
-    src/main.cpp
-    src/Components/IOComponent.cpp)
+    src/main.cpp)
 
 add_executable(${CMAKE_PROJECT_NAME} ${SRC})
