@@ -63,9 +63,8 @@ void nts::Circuit::addOutputComponent(const std::string &name,
  */
 void nts::Circuit::dump() const
 {
-    //    for (auto &component: _internalComponents) {
-    //        std::get<std::reference_wrapper<IComponent>>(component).get().dump();
-    //    }
+    std::for_each(_inputComponents.begin(), _inputComponents.end(),
+                  [](const std::pair<std::string, IComponent &> &pair) {std::get<IComponent&>(pair).dump();});
 }
 
 /**
@@ -76,4 +75,5 @@ void nts::Circuit::dump() const
  */
 void nts::Circuit::simulate(const std::string &inputs, const std::string &outputs)
 {
+
 }
