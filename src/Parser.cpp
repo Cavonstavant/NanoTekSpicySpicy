@@ -122,7 +122,12 @@ void nts::Parser::createChipset(std::string line, Factory &factory)
         throw nts::Exception::InvalidReadException("Invalid syntax");
     }
     try {
-        _mainBoard.addComponent(name, factory.createComponent(type));
+        if (type == "input")
+            _mainBoard.addInputComponent(name, factory.createComponent(type));
+        else if (type == "output")
+            _mainBoard.addOutputComponent(name, factory.createComponent(type));
+        else
+            _mainBoard.addComponent(name, factory.createComponent(type));
         // _mainBoard.
         // _mainBoard.emplace(std::make_pair(name, factory.createComponent(type)));
         // mainBoard.addComponent(factory.createComponent(type));
