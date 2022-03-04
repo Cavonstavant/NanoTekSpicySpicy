@@ -35,7 +35,7 @@ void nts::Circuit::addInputComponent(const std::string &name,
     auto *ioComponent = dynamic_cast<nts::IOComponent *>(&inputComponent);
     if (ioComponent != nullptr)
         throw nts::Exception::InvalidComponentException("Can't add an internal component as an input component");
-    //    _inputComponents[name] = inputComponent;
+    _inputComponents[name] = inputComponent;
 }
 
 /**
@@ -47,10 +47,9 @@ void nts::Circuit::addInputComponent(const std::string &name,
 void nts::Circuit::addOutputComponent(const std::string &name,
                                       IComponent &outputComponent)
 {
-    auto *ioComponent = dynamic_cast<nts::IOComponent *>(&outputComponent);
     if (dynamic_cast<std::unique_ptr<nts::IOComponent> &>(outputComponent) == nullptr)
         throw nts::Exception::InvalidComponentException("Can't add an internal component as an output component");
-    //    _outputComponents[name] = outputComponent;
+    _outputComponents[name] = outputComponent;
 }
 
 /**
@@ -58,17 +57,21 @@ void nts::Circuit::addOutputComponent(const std::string &name,
  */
 void nts::Circuit::dump() const
 {
-    //    for (auto &component: _internalComponents) {
-    //        std::get<std::reference_wrapper<IComponent>>(component).get().dump();
-    //    }
+    std::for_each(std::begin(_internalComponents), std::end(_internalComponents),
+                  [](const std::pair<std::string, std::reference_wrapper<IComponent>> &component) {
+                     std::get<std::reference_wrapper<IComponent>>(component).get().dump();
+                  });
 }
 
 /**
  * @brief simulate the circuit
- * @param inputs
- * @param outputs
+ * @param tick
  * This method assumes that all the link are set
  */
-void nts::Circuit::simulate(const std::string &inputs, const std::string &outputs)
+void nts::Circuit::simulate(size_t tick)
 {
+    std::for_each(_outputComponents.begin(), _outputComponents.end(),
+                  [tick](auto &outputComponent) {
+                      std::get<std::reference_wrapper<IComponent>>(outputComponent).get().simulate(tick);
+                  });
 }

@@ -26,3 +26,18 @@ void nts::IOComponent::setType(nts::IOType type)
 {
     _type = type;
 }
+
+/**
+ * @brief
+ * @param tick
+ */
+void nts::IOComponent::simulate(std::size_t tick) {
+    if (_type == nts::INPUT)
+        return;
+    for (; tick; tick--) {
+        std::for_each(_links.begin(), _links.end(), [this, tick](
+                nts::LinkPair &link) {
+            link.component
+        });
+    }
+}

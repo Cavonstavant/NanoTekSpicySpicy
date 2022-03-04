@@ -23,14 +23,13 @@ namespace nts {
         void addInputComponent(std::string const &name, IComponent &inputComponent);
         void addOutputComponent(std::string const &name, IComponent &outputComponent);
         void dump() const;
-        void simulate(std::string const &inputs, std::string const &outputs);
+        void simulate(size_t tick=1);
 
     private:
         std::map<std::string, std::reference_wrapper<IComponent>> _internalComponents;
         std::map<std::string, std::reference_wrapper<IComponent>> _inputComponents;
         std::map<std::string, std::reference_wrapper<IComponent>> _outputComponents;
     };
-
 }// namespace nts
 
 #endif//NANOTEKSPICE_CIRCUIT_HPP
