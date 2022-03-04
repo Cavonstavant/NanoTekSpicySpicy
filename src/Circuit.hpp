@@ -19,9 +19,9 @@ namespace nts {
         Circuit() = default;
         ~Circuit() = default;
 
-        void addComponent(std::string const &name, IComponent &component);
-        void addInputComponent(std::string const &name, IComponent &inputComponent);
-        void addOutputComponent(std::string const &name, IComponent &outputComponent);
+        void addComponent(std::string const &name, std::unique_ptr<IComponent> component);
+        void addInputComponent(std::string const &name, std::unique_ptr<IComponent>inputComponent);
+        void addOutputComponent(std::string const &name, std::unique_ptr<IComponent>outputComponent);
         void dump() const;
         void simulate(std::string const &inputs, std::string const &outputs);
         void setLink(std::string const &name, std::string const &pin, std::string const &otherName, std::string const &otherPin);

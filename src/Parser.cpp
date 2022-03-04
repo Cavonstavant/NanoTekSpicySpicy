@@ -42,7 +42,7 @@ static inline void trimLine(std::string &line)
                line.end());
 }
 
-size_t strtosize(const std::string &str)
+static size_t strtosize(const std::string &str)
 {
     size_t size = 0;
     std::stringstream ss;
@@ -122,7 +122,7 @@ void nts::Parser::createChipset(std::string line, Factory &factory)
         throw nts::Exception::InvalidReadException("Invalid syntax");
     }
     try {
-        _mainBoard.addComponent(factory.createComponent(type));
+        _mainBoard.addComponent(name, factory.createComponent(type));
         // _mainBoard.
         // _mainBoard.emplace(std::make_pair(name, factory.createComponent(type)));
         // mainBoard.addComponent(factory.createComponent(type));

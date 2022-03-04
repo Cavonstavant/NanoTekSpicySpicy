@@ -18,8 +18,10 @@
  */
 
 void nts::Circuit::addComponent(const std::string &name,
-                                IComponent &component)
+                                std::unique_ptr<IComponent> component)
 {
+    // _internalComponents.emplace(name, std::move(component));
+    // _internalComponents[name] = component;
     //    auto *ioComponent = dynamic_cast<nts::IOComponent *>(component);
     //    if (ioComponent)
     //        throw nts::Exception::InvalidComponentException("Can't add an IO component as an internal component");
@@ -33,11 +35,11 @@ void nts::Circuit::addComponent(const std::string &name,
  * @throw nts::Exception::InvalidComponentException if the component is not an IOComponent
  */
 void nts::Circuit::addInputComponent(const std::string &name,
-                                     IComponent &inputComponent)
+                                     std::unique_ptr<IComponent> inputComponent)
 {
-    auto *ioComponent = dynamic_cast<nts::IOComponent *>(&inputComponent);
-    if (ioComponent != nullptr)
-        throw nts::Exception::InvalidComponentException("Can't add an internal component as an input component");
+    // auto *ioComponent = dynamic_cast<nts::IOComponent *>(&inputComponent);
+    // if (ioComponent != nullptr)
+    //     throw nts::Exception::InvalidComponentException("Can't add an internal component as an input component");
     //    _inputComponents[name] = inputComponent;
 }
 
@@ -48,11 +50,11 @@ void nts::Circuit::addInputComponent(const std::string &name,
  * @throw nts::Exception::InvalidComponentException if the component is not an IOComponent
  */
 void nts::Circuit::addOutputComponent(const std::string &name,
-                                      IComponent &outputComponent)
+                                      std::unique_ptr<IComponent> outputComponent)
 {
-    auto *ioComponent = dynamic_cast<nts::IOComponent *>(&outputComponent);
-    if (dynamic_cast<std::unique_ptr<nts::IOComponent> &>(outputComponent) == nullptr)
-        throw nts::Exception::InvalidComponentException("Can't add an internal component as an output component");
+    // auto *ioComponent = dynamic_cast<nts::IOComponent *>(&outputComponent);
+    // if (dynamic_cast<std::unique_ptr<nts::IOComponent> &>(outputComponent) == nullptr)
+    //     throw nts::Exception::InvalidComponentException("Can't add an internal component as an output component");
     //    _outputComponents[name] = outputComponent;
 }
 
@@ -79,13 +81,13 @@ void nts::Circuit::simulate(const std::string &inputs, const std::string &output
 nts::IComponent &nts::Circuit::tryGetComponent(const std::string &name)
 {
     try {
-        return _inputComponents[name];
+        return _inputComponents.at(name);
     } catch (std::exception &) {
         try {
-            return _outputComponents[name];
+            return _outputComponents.at(name);
         } catch (std::exception &e) {
             try {
-                return _internalComponents[name];
+                return _internalComponents.at(name);
             } catch (std::exception &) {
                 throw Exception::InvalidComponentException("Can't find the component");
             }
@@ -93,7 +95,7 @@ nts::IComponent &nts::Circuit::tryGetComponent(const std::string &name)
     }
 }
 
-size_t strtosize(const std::string &str)
+static size_t strtosize(const std::string &str)
 {
     size_t size = 0;
     std::stringstream ss;
