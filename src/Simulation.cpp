@@ -9,15 +9,18 @@
 #include <iostream>
 #include <stdio.h>
 
-nts::Simulation::Simulation(std::string const &fileName) {
+nts::Simulation::Simulation(std::string const &fileName)
+{
     _parser.fillCircuit(fileName);
     _mainBoard = _parser.getMainBoard();
 }
 
-nts::Simulation::~Simulation() {
+nts::Simulation::~Simulation()
+{
 }
 
-void nts::Simulation::execCommand(std::string const &command) {
+void nts::Simulation::execCommand(std::string const &command)
+{
     if (command.find("=") != std::string::npos) {
         try {
             std::string name = command.substr(0, command.find("="));
@@ -41,7 +44,8 @@ void nts::Simulation::execCommand(std::string const &command) {
     }
 }
 
-void nts::Simulation::runSimulation() {
+void nts::Simulation::runSimulation()
+{
     std::string line;
 
     while (true) {
