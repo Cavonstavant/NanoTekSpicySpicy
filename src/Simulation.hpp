@@ -5,6 +5,7 @@
 ** Simulation
 */
 
+#include "Circuit.hpp"
 #include "Factory.hpp"
 #include "Parser.hpp"
 
@@ -14,15 +15,16 @@
 namespace nts {
     class Simulation {
         public:
-        Simulation(std::string const &fileName);
-        ~Simulation();
-        void runSimulation();
-        void execCommand(std::string const &command);
+            Simulation(std::string const &fileName);
+            ~Simulation();
+            void runSimulation();
+            void execCommand(std::string const &command);
 
         protected:
         private:
-        Parser _parser;
-        // IComponent &_mainBoard;
+            Parser _parser;
+            Circuit _mainBoard;
+            // IComponent &_mainBoard;
     };
 }// namespace nts
 
