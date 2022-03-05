@@ -78,13 +78,19 @@ void nts::Parser::createLink(std::string line, Factory &factory)
     std::string newLine = line;
 
     try {
+        // std::cout << line << std::endl;
         component1 = newLine.substr(0, newLine.find(":"));
+        // std::cout << component1 << std::endl;
         newLine = newLine.substr(newLine.find(":") + 1);
         pin1 = newLine.substr(0, newLine.find(" "));
+        // std::cout << pin1 << std::endl;
         newLine = newLine.substr(newLine.find(" ") + 1);
         component2 = newLine.substr(0, newLine.find(":"));
+        // std::cout << component2 << std::endl;
         newLine = newLine.substr(newLine.find(":") + 1);
         pin2 = newLine;
+        // std::cout << pin2 << std::endl;
+        // std::cout << std::endl;
     } catch (std::exception &e) {
         throw nts::Exception::InvalidSyntaxException("Invalid syntax");
     }
@@ -92,7 +98,7 @@ void nts::Parser::createLink(std::string line, Factory &factory)
         throw nts::Exception::VeryStupidUserError("You can't link a component's pin to itself");
 
     try {
-        _mainBoard.setLink(component1, pin1, component2, pin2);
+        // _mainBoard.setLink(component1, pin1, component2, pin2);
         // _mainBoard[component1].get().setLink(strtosize(pin1), _mainBoard[component2].get(), strtosize(pin2));
     } catch (std::exception &e) {
         throw nts::Exception::InvalidSyntaxException("Invalid syntax");
@@ -117,10 +123,12 @@ void nts::Parser::createChipset(std::string line, Factory &factory)
     std::string name;
 
     try {
+        // std::cout << line << std::endl;
         type = line.substr(0, line.find(" "));
-        std::cout << type << std::endl;
+        // std::cout << type << std::endl;
         name = line.substr(line.find(" ") + 1);
-        std::cout << name << std::endl;
+        // std::cout << name << std::endl;
+        // std::cout << std::endl;
     } catch (std::exception) {
         throw nts::Exception::InvalidReadException("Invalid syntax");
     }

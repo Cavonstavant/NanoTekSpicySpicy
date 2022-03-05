@@ -80,19 +80,27 @@ void nts::Circuit::simulate(const std::string &inputs, const std::string &output
 
 nts::IComponent &nts::Circuit::tryGetComponent(const std::string &name)
 {
-    try {
+    if (_internalComponents.find(name) != _internalComponents.end())
+        return _internalComponents.at(name);
+    else if (_inputComponents.find(name) != _inputComponents.end())
         return _inputComponents.at(name);
-    } catch (std::exception &) {
-        try {
-            return _outputComponents.at(name);
-        } catch (std::exception &e) {
-            try {
-                return _internalComponents.at(name);
-            } catch (std::exception &) {
-                throw Exception::InvalidComponentException("Can't find the component");
-            }
-        }
-    }
+    else if (_outputComponents.find(name) != _outputComponents.end())
+        return _outputComponents.at(name);
+    else
+        throw nts::Exception::InvalidComponentException("Component not found");
+    // try {
+    //     return _inputComponents.at(name);
+    // } catch (std::exception &) {
+    //     try {
+    //         return _outputComponents.at(name);
+    //     } catch (std::exception &e) {
+    //         try {
+    //             return _internalComponents.at(name);
+    //         } catch (std::exception &) {
+    //             throw Exception::InvalidComponentException("Can't find the component");
+    //         }
+    //     }
+    // }
 }
 
 static size_t strtosize(const std::string &str)
