@@ -7,13 +7,13 @@
 
 #include "Parser.hpp"
 #include "AComponent.hpp"
+#include "Circuit.hpp"
 #include "Components/IOComponent.hpp"
 #include "Exception.hpp"
 #include "Factory.hpp"
 #include <fstream>
-#include <sstream>
-#include "Circuit.hpp"
 #include <iostream>
+#include <sstream>
 
 nts::Parser::Parser()
 {
