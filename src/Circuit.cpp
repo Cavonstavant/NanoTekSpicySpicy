@@ -18,7 +18,7 @@
  */
 
 void nts::Circuit::addComponent(const std::string &name,
-                                std::unique_ptr<IComponent> component)
+                                std::unique_ptr<IComponent> &&component)
 {
     // _internalComponents.emplace(name, std::move(component));
     // _internalComponents[name] = component;
@@ -26,6 +26,7 @@ void nts::Circuit::addComponent(const std::string &name,
     //    if (ioComponent)
     //        throw nts::Exception::InvalidComponentException("Can't add an IO component as an internal component");
     //    _internalComponents[name] = std::ref(component);
+    _internalComponents.emplace(name, std::move(component));
 }
 
 /**
@@ -35,12 +36,13 @@ void nts::Circuit::addComponent(const std::string &name,
  * @throw nts::Exception::InvalidComponentException if the component is not an IOComponent
  */
 void nts::Circuit::addInputComponent(const std::string &name,
-                                     std::unique_ptr<IComponent> inputComponent)
+                                     std::unique_ptr<IComponent> &&inputComponent)
 {
     // auto *ioComponent = dynamic_cast<nts::IOComponent *>(&inputComponent);
     // if (ioComponent != nullptr)
     //     throw nts::Exception::InvalidComponentException("Can't add an internal component as an input component");
     //    _inputComponents[name] = inputComponent;
+    _inputComponents.emplace(name, std::move(inputComponent));
 }
 
 /**
@@ -50,12 +52,13 @@ void nts::Circuit::addInputComponent(const std::string &name,
  * @throw nts::Exception::InvalidComponentException if the component is not an IOComponent
  */
 void nts::Circuit::addOutputComponent(const std::string &name,
-                                      std::unique_ptr<IComponent> outputComponent)
+                                      std::unique_ptr<IComponent> &&outputComponent)
 {
     // auto *ioComponent = dynamic_cast<nts::IOComponent *>(&outputComponent);
     // if (dynamic_cast<std::unique_ptr<nts::IOComponent> &>(outputComponent) == nullptr)
     //     throw nts::Exception::InvalidComponentException("Can't add an internal component as an output component");
     //    _outputComponents[name] = outputComponent;
+    _outputComponents.emplace(name, std::move(outputComponent));
 }
 
 /**
@@ -81,13 +84,13 @@ void nts::Circuit::simulate(const std::string &inputs, const std::string &output
 nts::IComponent &nts::Circuit::tryGetComponent(const std::string &name)
 {
     try {
-        return _inputComponents.at(name);
+        return *_inputComponents.at(name);
     } catch (std::exception &) {
         try {
-            return _outputComponents.at(name);
+            return *_outputComponents.at(name);
         } catch (std::exception &e) {
             try {
-                return _internalComponents.at(name);
+                return *_internalComponents.at(name);
             } catch (std::exception &) {
                 throw Exception::InvalidComponentException("Can't find the component");
             }
