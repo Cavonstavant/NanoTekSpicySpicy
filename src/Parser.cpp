@@ -13,6 +13,7 @@
 #include <fstream>
 #include <sstream>
 #include "Circuit.hpp"
+#include <iostream>
 
 nts::Parser::Parser()
 {
@@ -117,7 +118,9 @@ void nts::Parser::createChipset(std::string line, Factory &factory)
 
     try {
         type = line.substr(0, line.find(" "));
+        std::cout << type << std::endl;
         name = line.substr(line.find(" ") + 1);
+        std::cout << name << std::endl;
     } catch (std::exception) {
         throw nts::Exception::InvalidReadException("Invalid syntax");
     }
@@ -168,7 +171,9 @@ int nts::Parser::findAny(std::string str, const char *chars)
     for (int i = 0; i < str.length(); i++)
         for (int c = 0; chars[c]; c++)
             if (str[i] == chars[c])
-                return i;
+                for (int j = 0; j < i; j++)
+                    if (str[i + 1] == chars[j])
+                        return i;
     return -1;
 }
 
