@@ -188,6 +188,11 @@ std::string nts::Parser::trimMiddle(std::string str)
 std::string nts::Parser::trim(const std::string &str)
 {
     size_t first = str.find_first_not_of(' ');
+    if (first == std::string::npos)
+        first = 0;
     size_t last = str.find_last_not_of(' ');
+    if (last == std::string::npos)
+        last = str.length();
     return trimMiddle(str.substr(first, (last - first + 1)));
+    // return trimMiddle(str.substr(first, (last - first + 1)));
 }
