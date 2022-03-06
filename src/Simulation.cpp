@@ -39,7 +39,7 @@ void nts::Simulation::execCommand(std::string const &command)
     } else if (command == "exit") {
         // _mainBoard.exit();
     } else if (command == "dump") {
-        // _mainBoard.dump();
+        _mainBoard.dump();
     } else {
         std::cerr << "Unknown command '" << command << "'." << std::endl;
     }
