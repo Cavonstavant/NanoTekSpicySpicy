@@ -20,6 +20,7 @@
 void nts::Circuit::addComponent(const std::string &name,
                                 std::unique_ptr<IComponent> component)
 {
+    _internalComponents.emplace(name, *component);
     // _internalComponents.emplace(name, std::move(component));
     // _internalComponents[name] = component;
     //    auto *ioComponent = dynamic_cast<nts::IOComponent *>(component);
@@ -37,6 +38,10 @@ void nts::Circuit::addComponent(const std::string &name,
 void nts::Circuit::addInputComponent(const std::string &name,
                                      std::unique_ptr<IComponent> inputComponent)
 {
+    // IComponent &component = *inputComponent;
+    _inputComponents.emplace(name, *inputComponent);
+    // _inputComponents[name] = inputComponent;
+    // _inputComponents.emplace(name, inputComponent);
     // auto *ioComponent = dynamic_cast<nts::IOComponent *>(&inputComponent);
     // if (ioComponent != nullptr)
     //     throw nts::Exception::InvalidComponentException("Can't add an internal component as an input component");
@@ -52,6 +57,7 @@ void nts::Circuit::addInputComponent(const std::string &name,
 void nts::Circuit::addOutputComponent(const std::string &name,
                                       std::unique_ptr<IComponent> outputComponent)
 {
+    _outputComponents.emplace(name, *outputComponent);
     // auto *ioComponent = dynamic_cast<nts::IOComponent *>(&outputComponent);
     // if (dynamic_cast<std::unique_ptr<nts::IOComponent> &>(outputComponent) == nullptr)
     //     throw nts::Exception::InvalidComponentException("Can't add an internal component as an output component");
@@ -63,6 +69,21 @@ void nts::Circuit::addOutputComponent(const std::string &name,
  */
 void nts::Circuit::dump() const
 {
+    // std::cout << "Dumping internal components" << std::endl;
+    // for (auto &component : _internalComponents) {
+    //     std::cout << component.first << ":" << std::endl;
+    //     IComponent &componentRef = component.second;
+    //     componentRef.dump();
+    //     // std::cout << component.first << ": " << component.second.get().dump() << std::endl;
+    // }
+    // std::cout << "Dumping input components" << std::endl;
+    // for (auto &component : _inputComponents) {
+    //     std::cout << component.first << ": " << "" << std::endl;
+    // }
+    // std::cout << "Dumping output components" << std::endl;
+    // for (auto &component : _outputComponents) {
+    //     std::cout << component.first << ": " << "" << std::endl;
+    // }
     //    for (auto &component: _internalComponents) {
     //        std::get<std::reference_wrapper<IComponent>>(component).get().dump();
     //    }

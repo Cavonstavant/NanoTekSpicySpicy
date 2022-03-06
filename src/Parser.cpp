@@ -98,7 +98,7 @@ void nts::Parser::createLink(std::string line, Factory &factory, Circuit &circui
         throw nts::Exception::VeryStupidUserError("You can't link a component's pin to itself");
 
     try {
-        // _mainBoard.setLink(component1, pin1, component2, pin2);
+        // circuit.setLink(component1, pin1, component2, pin2);
         // _mainBoard[component1].get().setLink(strtosize(pin1), _mainBoard[component2].get(), strtosize(pin2));
     } catch (std::exception &e) {
         throw nts::Exception::InvalidSyntaxException("Invalid syntax");
