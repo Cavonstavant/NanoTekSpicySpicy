@@ -23,10 +23,10 @@ nts::Parser::~Parser()
 {
 }
 
-nts::Circuit nts::Parser::getMainBoard() const
-{
-    return _mainBoard;
-}
+// nts::Circuit &nts::Parser::getMainBoard() const
+// {
+//     return _mainBoard;
+// }
 
 // nts::Circuit nts::Parser::getMainBoard() const {
 //     return _mainBoard;
@@ -69,7 +69,7 @@ static size_t strtosize(const std::string &str)
  * @throw nts::ParserError
  * @throw nts::Exception::RuntimeException if the file can't be open
  */
-void nts::Parser::createLink(std::string line, Factory &factory)
+void nts::Parser::createLink(std::string line, Factory &factory, Circuit &circuit)
 {
     std::string component1;
     std::string component2;
@@ -117,7 +117,7 @@ void nts::Parser::createLink(std::string line, Factory &factory)
     // }
 }
 
-void nts::Parser::createChipset(std::string line, Factory &factory)
+void nts::Parser::createChipset(std::string line, Factory &factory, Circuit &circuit)
 {
     std::string type;
     std::string name;
@@ -134,11 +134,11 @@ void nts::Parser::createChipset(std::string line, Factory &factory)
     }
     try {
         if (type == "input")
-            _mainBoard.addInputComponent(name, factory.createComponent(type));
+            circuit.addInputComponent(name, factory.createComponent(type));
         else if (type == "output")
-            _mainBoard.addOutputComponent(name, factory.createComponent(type));
+            circuit.addOutputComponent(name, factory.createComponent(type));
         else
-            _mainBoard.addComponent(name, factory.createComponent(type));
+            circuit.addComponent(name, factory.createComponent(type));
         // _mainBoard.
         // _mainBoard.emplace(std::make_pair(name, factory.createComponent(type)));
         // mainBoard.addComponent(factory.createComponent(type));
@@ -147,7 +147,7 @@ void nts::Parser::createChipset(std::string line, Factory &factory)
     }
 }
 
-void nts::Parser::fillCircuit(const std::string &file)
+void nts::Parser::fillCircuit(const std::string &file, Circuit &circuit)
 {
     std::ifstream input(file);
     if (!input.is_open())
@@ -167,9 +167,9 @@ void nts::Parser::fillCircuit(const std::string &file)
             isLink = false;
             continue;
         } else if (isLink == false) {
-            createChipset(line, factory);
+            createChipset(line, factory, circuit);
         } else {
-            createLink(line, factory);
+            createLink(line, factory, circuit);
         }
     }
 }
